@@ -1,0 +1,287 @@
+# Portfolio Value Chain Mapping
+# 보유 종목별로 추적할 밸류체인 entity 정의.
+# 매일 cron이 이 정의대로 뉴스/공시 수집.
+#
+# 구조:
+#   각 종목 = 키
+#   - code: 한국 종목 코드 (KRX) 또는 ticker (US)
+#   - market: KRX | NASDAQ | NYSE
+#   - thesis: 한 줄 테제 (브리핑 헤더에 사용)
+#   - news_queries: Google News RSS 검색어 (한/영 혼용 OK)
+#   - upstream / downstream / global_leaders / competitors:
+#       각 entity는 name + (code|ticker) + why
+#   - extra_keywords: 추가 모니터링 키워드 (이벤트, 프로그램명 등)
+
+holdings:
+
+  SK하이닉스:
+    code: "000660"
+    market: KRX
+    sector: 반도체/HBM
+    thesis: HBM 점유율 + AI 서버당 메모리 탑재량 증가, NVIDIA 공급망 핵심
+    news_queries:
+      - "SK하이닉스"
+      - "SK Hynix HBM"
+      - "SK하이닉스 HBM4"
+    upstream:
+      - name: 한미반도체
+        code: "042700"
+        market: KRX
+        why: TC Bonder 핵심 공급사
+      - name: 한화세미텍
+        code: "272290"
+        market: KRX
+        why: TC Bonder 신규 진입 경쟁사
+      - name: 피에스케이홀딩스
+        code: "031980"
+        market: KRX
+        why: HBM 리플로우 장비 3사 공급
+    downstream:
+      - name: NVIDIA
+        ticker: NVDA
+        market: NASDAQ
+        why: HBM 최대 고객
+      - name: 삼성전자
+        code: "005930"
+        market: KRX
+        why: HBM 경쟁사 (HBM4 NVIDIA 양산 진입)
+      - name: Micron
+        ticker: MU
+        market: NASDAQ
+        why: HBM 경쟁사
+    global_leaders:
+      - name: NVIDIA
+        ticker: NVDA
+        why: AI 데이터센터 수요의 alpha 결정
+      - name: TSMC
+        ticker: TSM
+        why: NVIDIA CoWoS 패키징 캐파
+    extra_keywords:
+      - "HBM 가격"
+      - "TrendForce HBM"
+      - "Vera Rubin"
+
+  웨이비스:
+    code: "289930"
+    market: KRX
+    sector: 방산/GaN RF
+    thesis: 국내 유일 GaN RF IDM, L-SAM 양산 + 해외 수출 레퍼런스 확장
+    news_queries:
+      - "웨이비스"
+      - "Wavice GaN"
+    upstream: []
+    downstream:
+      - name: 한화시스템
+        code: "272210"
+        market: KRX
+        why: L-SAM MFR 직접 발주처
+      - name: LIG넥스원
+        code: "079550"
+        market: KRX
+        why: 해궁/천궁 등 함정 MFR 채널
+      - name: 한화에어로스페이스
+        code: "012450"
+        market: KRX
+        why: 방산 수출 동반 모멘텀 (천무·K9)
+    global_leaders:
+      - name: Raytheon
+        ticker: RTX
+        why: Patriot PAC-3 — L-SAM 비교 타깃
+      - name: MBDA
+        why: 유럽 미사일 거인
+    competitors:
+      - name: RFHIC
+        code: "218410"
+        market: KRX
+        why: 국내 GaN RF 경쟁사 (팹리스 모델)
+    extra_keywords:
+      - "L-SAM"
+      - "한국형 미사일방어"
+      - "방산수출"
+      - "한화 독일 방공"
+
+  알멕:
+    code: "354320"
+    market: KRX
+    sector: 알루미늄/우주항공
+    thesis: SpaceX 스타십 알루미늄 부품 퀄 + EV 알루미늄 안정 캐시카우
+    news_queries:
+      - "알멕"
+      - "알멕 SpaceX"
+      - "알멕 알루미늄"
+    upstream:
+      - name: LME 알루미늄 가격
+        why: 원자재 마진 압박 모니터
+    downstream:
+      - name: SpaceX
+        why: 스타십 부품 퀄 진행 — 본 테제 핵심
+      - name: 블루오벌SK
+        why: EV 배터리 모듈케이스 1,685억 계약
+      - name: 현대차/Tesla
+        why: EV 알루미늄 수요
+    global_leaders:
+      - name: SpaceX
+        why: 스타십 V3 발사 일정이 알멕 모멘텀 결정
+    extra_keywords:
+      - "Starship"
+      - "Starship V3"
+      - "Flight 12"
+      - "스타십 발사"
+      - "알루미늄 압출"
+
+  Tesla:
+    ticker: TSLA
+    market: NASDAQ
+    sector: 전기차/AI
+    thesis: FSD 전폭 승인 + 로보택시 상용화 + Optimus 양산 옵셔널리티
+    news_queries:
+      - "Tesla TSLA"
+      - "Tesla FSD"
+      - "Tesla Robotaxi"
+      - "Tesla Optimus"
+    upstream:
+      - name: NVIDIA
+        ticker: NVDA
+        why: Dojo 대비 GPU 의존도 변화
+      - name: Intel
+        ticker: INTC
+        why: Terafab 14A 파운드리 파트너
+    downstream: []
+    global_leaders:
+      - name: Waymo
+        why: 로보택시 직접 경쟁 — 스케일 비교
+      - name: BYD
+        why: 글로벌 EV 1위 다툼
+    competitors:
+      - name: BYD
+        why: 글로벌 EV 시장 1위 다툼
+      - name: Rivian
+        ticker: RIVN
+        why: 미국 EV 후발
+    extra_keywords:
+      - "Cybercab"
+      - "Robotaxi"
+      - "Optimus V3"
+      - "Terafab"
+      - "Elon Musk"
+
+  Forgent Power Solutions:
+    ticker: FPS
+    market: NYSE
+    sector: AI 전력 인프라
+    thesis: 데이터센터 전력 분배 장비 (ATS·eHouse·스위치기어). 하이퍼스케일러 CapEx의 L4 옵션 leg
+    news_queries:
+      - "Forgent Power Solutions"
+      - "FPS NYSE Forgent"
+    upstream: []
+    downstream:
+      - name: Microsoft
+        ticker: MSFT
+        why: 하이퍼스케일러 CapEx 가이던스
+      - name: Meta
+        ticker: META
+        why: 하이퍼스케일러 CapEx 가이던스
+      - name: Google
+        ticker: GOOGL
+        why: 하이퍼스케일러 CapEx 가이던스
+      - name: Amazon
+        ticker: AMZN
+        why: 하이퍼스케일러 CapEx 가이던스 (AWS)
+    global_leaders:
+      - name: Vertiv
+        ticker: VRT
+        why: AI 전력/쿨링 통합 리더 (NVIDIA Rubin DSX 레퍼런스)
+      - name: Eaton
+        ticker: ETN
+        why: 종합 전력 관리
+    competitors:
+      - name: Powell Industries
+        ticker: POWL
+        why: 직접 경쟁 (스위치기어 + eHouse)
+      - name: nVent
+        ticker: NVT
+        why: 데이터센터 열관리·랙 솔루션
+    extra_keywords:
+      - "data center power"
+      - "AI capex"
+      - "switchgear backlog"
+      - "Vera Rubin DSX"
+
+  HD현대마린솔루션:
+    code: "443060"
+    market: KRX
+    sector: 조선/선박 AS·디지털
+    thesis: 선박 엔진 AS + 친환경 추진(LNG·메탄올·암모니아) 전환 사이클 수혜. HD현대 그룹사 후방 안정 캐시플로우.
+    news_queries:
+      - "HD현대마린솔루션"
+      - "Hyundai Marine Solution"
+    upstream:
+      - name: HD현대중공업
+        code: "329180"
+        market: KRX
+        why: 선박 OEM 모회사
+      - name: 현대미포조선
+        code: "010620"
+        market: KRX
+        why: 중형 선박 OEM 그룹사
+    downstream:
+      - name: HMM
+        code: "011200"
+        market: KRX
+        why: 국내 최대 컨테이너 해운사
+      - name: Maersk
+        why: 글로벌 해운 1위 — 친환경 선박 발주 동향
+      - name: MSC
+        why: 글로벌 해운 — 메탄올 추진선 선구자
+    global_leaders:
+      - name: HD한국조선해양
+        code: "009540"
+        market: KRX
+        why: 그룹 지주, 조선 시황 선행지표
+    competitors:
+      - name: Wartsila
+        why: 핀란드 — 글로벌 선박엔진 AS 강자
+      - name: MAN Energy Solutions
+        why: 독일 MAN ES — 대형 선박엔진 AS
+    extra_keywords:
+      - "친환경 선박"
+      - "LNG 추진"
+      - "메탄올 추진"
+      - "암모니아 추진"
+      - "선박 디지털화"
+      - "IMO 환경규제"
+
+# Conviction High 진입 대기 종목 — 보유는 아니지만 모니터링 대상
+watchlist:
+
+  Ciena:
+    ticker: CIEN
+    market: NYSE
+    sector: AI 인프라/광통신
+    thesis: AI 인프라 배관공. Scale Across 하이퍼스케일러 3사 채택 + Hyper-rail TAM 확장
+    news_queries:
+      - "Ciena CIEN"
+      - "Ciena optical"
+    downstream:
+      - name: Microsoft
+        ticker: MSFT
+        why: 하이퍼스케일러 광통신 수요
+      - name: Google
+        ticker: GOOGL
+        why: 하이퍼스케일러 광통신 수요
+    competitors:
+      - name: Nokia
+        ticker: NOK
+        why: Infinera 통합 후 경쟁 강화
+      - name: Cisco
+        ticker: CSCO
+        why: 광통신 경쟁
+    global_leaders:
+      - name: NVIDIA
+        ticker: NVDA
+        why: AI 데이터센터 트래픽 발생원
+    extra_keywords:
+      - "Hyper-rail"
+      - "Scale Across"
+      - "1.6T optical"
+      - "OFC 2026"

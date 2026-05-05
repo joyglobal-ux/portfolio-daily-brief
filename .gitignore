@@ -1,0 +1,29 @@
+# Secrets — .env 및 모든 변형 (.env.save, .env.local 등) 차단
+.env
+.env.*
+!.env.example
+*.local
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.uv/
+*.egg-info/
+
+# Working artifacts
+output/raw/
+output/cache/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

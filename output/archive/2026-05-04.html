@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Daily Brief — 2026-05-04</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+  :root {
+    --bg: #0d0d1a;
+    --surface: #14142b;
+    --surface-2: #1c1c3a;
+    --border: #2a2a4a;
+    --text: #e6e6f0;
+    --text-2: #9090a8;
+    --text-3: #6a6a85;
+    --accent: #7c5cff;
+    --accent-2: #4a9eff;
+    --green: #4ade80;
+    --yellow: #fbbf24;
+    --red: #f87171;
+    --link: #8ab4ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  /* Header */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+  .header .meta {
+    color: var(--text-3);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .header .top-line {
+    color: var(--text-2);
+    font-size: 17px;
+    line-height: 1.5;
+    padding: 16px 20px;
+    background: var(--surface);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+  /* Nav */
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 32px 0;
+  }
+  .toc a {
+    background: var(--surface);
+    color: var(--text-2);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .toc a:hover {
+    background: var(--surface-2);
+    color: var(--text);
+    border-color: var(--accent);
+  }
+  /* Stock section */
+  .stock {
+    margin-bottom: 56px;
+    scroll-margin-top: 24px;
+  }
+  .stock-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .stock-name {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .stock-ticker {
+    color: var(--text-3);
+    font-size: 14px;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+  .stock-thesis {
+    color: var(--text-2);
+    font-size: 14px;
+    margin-bottom: 24px;
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+  }
+  /* News group */
+  .news-group {
+    margin-bottom: 24px;
+  }
+  .news-group-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .news-group-title .icon {
+    font-size: 14px;
+  }
+  .news-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .news-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    transition: border-color 0.15s;
+  }
+  .news-item:hover {
+    border-color: var(--accent);
+  }
+  .news-item .title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .news-item .summary {
+    font-size: 14px;
+    color: var(--text-2);
+    margin-bottom: 8px;
+  }
+  .news-item .source-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-3);
+  }
+  .news-item .source {
+    font-weight: 500;
+  }
+  .news-item .link {
+    color: var(--link);
+    text-decoration: none;
+  }
+  .news-item .link:hover {
+    text-decoration: underline;
+  }
+  .events {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    margin-top: 12px;
+  }
+  .events-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .events ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .events li {
+    font-size: 14px;
+    color: var(--text);
+    padding-left: 16px;
+    position: relative;
+  }
+  .events li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--yellow);
+  }
+  .empty {
+    color: var(--text-3);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+    text-align: center;
+    background: var(--surface);
+    border-radius: 6px;
+    border: 1px dashed var(--border);
+  }
+  /* Footer */
+  .footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    color: var(--text-3);
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.8;
+  }
+  .footer a {
+    color: var(--text-2);
+    text-decoration: none;
+  }
+  .footer a:hover {
+    color: var(--accent-2);
+  }
+  /* Mobile */
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 60px; }
+    .header h1 { font-size: 24px; }
+    .header .top-line { font-size: 15px; padding: 12px 16px; }
+    .stock-name { font-size: 20px; }
+    .news-item { padding: 12px 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="meta">2026-05-04 (월) · Portfolio Daily Brief</div>
+    <h1>오늘의 포트폴리오</h1>
+    <p class="top-line">주요 종목별 뉴스 내용이 제공되지 않아 포트폴리오 톤 요약 불가</p>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#sk하이닉스">SK하이닉스</a>
+    <a href="#웨이비스">웨이비스</a>
+    <a href="#알멕">알멕</a>
+    <a href="#forgent-power-solutions">Forgent Power Solutions</a>
+    <a href="#tesla">Tesla</a>
+    <a href="#hd현대마린솔루션">HD현대마린솔루션</a>
+    <a href="#ciena">Ciena</a>
+  </nav>
+
+  <section id="sk하이닉스" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">SK하이닉스</div>
+      <div class="stock-ticker">000660</div>
+    </div>
+    <p class="stock-thesis">HBM 점유율 + AI 서버당 메모리 탑재량 증가, NVIDIA 공급망 핵심</p>
+
+      <div class="empty">최근 24시간 의미 있는 뉴스 없음.</div>
+
+
+
+
+  </section>
+  <section id="웨이비스" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">웨이비스</div>
+      <div class="stock-ticker">289930</div>
+    </div>
+    <p class="stock-thesis">국내 유일 GaN RF IDM, L-SAM 양산 + 해외 수출 레퍼런스 확장</p>
+
+      <div class="empty">최근 24시간 의미 있는 뉴스 없음.</div>
+
+
+
+
+  </section>
+  <section id="알멕" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">알멕</div>
+      <div class="stock-ticker">354320</div>
+    </div>
+    <p class="stock-thesis">SpaceX 스타십 알루미늄 부품 퀄 + EV 알루미늄 안정 캐시카우</p>
+
+      <div class="empty">최근 24시간 의미 있는 뉴스 없음.</div>
+
+
+
+
+  </section>
+  <section id="forgent-power-solutions" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">Forgent Power Solutions</div>
+      <div class="stock-ticker">FPS</div>
+    </div>
+    <p class="stock-thesis">데이터센터 전력 분배 장비 (ATS·eHouse·스위치기어). 하이퍼스케일러 CapEx의 L4 옵션 leg</p>
+
+      <div class="empty">최근 24시간 의미 있는 뉴스 없음.</div>
+
+
+
+
+  </section>
+  <section id="tesla" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">Tesla</div>
+      <div class="stock-ticker">TSLA</div>
+    </div>
+    <p class="stock-thesis">FSD 전폭 승인 + 로보택시 상용화 + Optimus 양산 옵셔널리티</p>
+
+      <div class="empty">최근 24시간 의미 있는 뉴스 없음.</div>
+
+
+
+
+  </section>
+  <section id="hd현대마린솔루션" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">HD현대마린솔루션</div>
+      <div class="stock-ticker">443060</div>
+    </div>
+    <p class="stock-thesis">선박 엔진 AS + 친환경 추진(LNG·메탄올·암모니아) 전환 사이클 수혜. HD현대 그룹사 후방 안정 캐시플로우.</p>
+
+      <div class="empty">최근 24시간 의미 있는 뉴스 없음.</div>
+
+
+
+
+  </section>
+  <section id="ciena" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">Ciena</div>
+      <div class="stock-ticker">CIEN</div>
+    </div>
+    <p class="stock-thesis">AI 인프라 배관공. Scale Across 하이퍼스케일러 3사 채택 + Hyper-rail TAM 확장</p>
+
+      <div class="empty">최근 24시간 의미 있는 뉴스 없음.</div>
+
+
+
+
+  </section>
+
+  <footer class="footer">
+    <div>Generated 2026-05-04 22:15 KST · 다음 갱신 매일 07:00 KST</div>
+    <div>데이터: 구글시트 · Google News RSS · Claude API · <a href="https://github.com/joyglobal-ux/portfolio-daily-brief" target="_blank" rel="noopener">소스</a></div>
+  </footer>
+
+</div>
+</body>
+</html>
