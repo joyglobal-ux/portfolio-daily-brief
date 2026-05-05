@@ -16,6 +16,10 @@ concurrency:
   group: daily-brief
   cancel-in-progress: false
 
+# Node.js 24로 강제 실행 (2026-06-02 default 전환 대비)
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   build:
     runs-on: ubuntu-latest
