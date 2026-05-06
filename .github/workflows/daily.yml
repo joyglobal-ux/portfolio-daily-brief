@@ -1,9 +1,10 @@
 name: Daily Brief
 
 on:
-  # 매일 22:00 UTC (= 다음날 07:00 KST). cron 6개 별도 필드 주의 (분 시 일 월 요일).
+  # 22:00 UTC Sun-Thu = 07:00 KST Mon-Fri (한국 평일 아침).
+  # 한국 공휴일은 main.py가 자체 체크해서 스킵.
   schedule:
-    - cron: "0 22 * * *"
+    - cron: "0 22 * * 0-4"
   # 수동 실행 가능
   workflow_dispatch:
 

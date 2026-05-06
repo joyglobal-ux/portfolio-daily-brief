@@ -162,15 +162,18 @@ def _dedupe(items: list[NewsItem]) -> list[NewsItem]:
 def collect_news_for_stock(
     name: str,
     stock_def: dict,
-    days: int = 2,
+    days: int = 1,
     use_korean: bool = True,
     max_per_query: int = 8,
 ) -> StockNews:
     """한 종목의 모든 버킷에 대해 뉴스 수집.
 
-    days: 최근 N일 이내 항목만
+    days: 최근 N일 이내 항목만 (기본 1일)
     use_korean: True → 한국어 RSS 우선, False → 영어
     max_per_query: 검색어별 최대 항목
+
+    Note: published 없는 항목은 스킵. Google News가 가끔 오래된 기사를 syndication
+    매체(MSN 등)에 republish 해서 날짜 없이 노출시키는 경우 방지.
     """
     code_or_ticker = stock_def.get("code") or stock_def.get("ticker") or ""
     queries = _build_queries(stock_def, name)
@@ -190,7 +193,8 @@ def collect_news_for_stock(
             item = _parse_entry(entry, query, bucket)
             if not item:
                 continue
-            if item.published and item.published < cutoff:
+            # published 없거나 cutoff 이전이면 스킵 (오래된 syndication 방지)
+            if not item.published or item.published < cutoff:
                 continue
             all_items.append(item)
             per_query_count += 1

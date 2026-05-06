@@ -93,14 +93,15 @@ def _build_prompt(stock_news: StockNews, thesis: str) -> str:
 
 규칙:
 1. id는 위 헤드라인 인덱스 번호 ([0], [1] 등) — 정수만.
-2. 광고·SEO 도배·종목과 무관한 잡뉴스 제외. 진짜 의미 있는 것만 골라.
-3. 종목당 self_news 최대 5개, chain_news 최대 5개, misc_news 최대 3개.
+2. **품질 우선, 양 채우지 말 것.** 광고·SEO 도배·종목과 무관한 잡뉴스·중복은 제외.
+3. **개수 강제 안 함.** 최대 self_news 3개, chain_news 3개, misc_news 2개. 의미 있는 게 1개면 1개, 0개면 빈 배열.
 4. summary는 한글. 영문 헤드라인이어도 한글 의역.
 5. 매도 트리거나 진입 시그널 같은 분석은 하지 말 것 — 사실 정리만.
-6. 의미 있는 게 진짜 없으면 빈 배열. 거짓 채우지 마세요. 단 헤드라인 N개 중 종목 본업 또는 직접 밸류체인과 관련된 게 있으면 빠뜨리지 말 것.
-7. self_news 버킷 'self', chain_news 버킷 'upstream/downstream/global_leaders', misc_news 버킷 'competitors/extra' 기준이지만 너무 엄격하지 말고 의미 있으면 위로 끌어올려도 됨.
-8. upcoming_events: 헤드라인에서 D-30 이내 예정 이벤트 (실적/발사/컨퍼런스/규제 등) 있으면 추출. 없으면 빈 배열.
-9. JSON만 출력. 설명·코드블록·markdown 금지.
+6. **거짓 채우거나 억지로 끼워 넣지 마세요.** 평범한 가격 등락 코멘터리·일반 시장 동향·다른 종목이 주인공인 기사는 제외.
+7. 다음은 **반드시 포함**할 만한 것: 해당 종목 자체의 신규 공시·실적·수주·임상·규제·CEO 발언, 직접 밸류체인 대장주의 가이던스 변화·신제품·M&A.
+8. self_news 버킷 'self', chain_news 버킷 'upstream/downstream/global_leaders', misc_news 버킷 'competitors/extra' 기준이지만 너무 엄격하지 말고 의미 있으면 위로 끌어올려도 됨.
+9. upcoming_events: 헤드라인에서 D-30 이내 예정 이벤트 (실적/발사/컨퍼런스/규제 등) 있으면 추출. 없으면 빈 배열.
+10. JSON만 출력. 설명·코드블록·markdown 금지.
 """
 
 
@@ -140,7 +141,11 @@ def _call_claude(client: Anthropic, prompt: str, model: str = DEFAULT_MODEL, max
 
 
 def _extract_json(text: str) -> dict:
-    """응답에서 JSON 블록 추출. 코드블록 ```json ... ``` 처리."""
+    """응답에서 JSON 블록 추출. 코드블록 ```json ... ``` 처리.
+    LLM이 가끔 array 항목 사이 comma 누락 → 정규식 자동 보정.
+    """
+    import re
+
     text = text.strip()
     if text.startswith("```"):
         lines = text.splitlines()
@@ -151,9 +156,18 @@ def _extract_json(text: str) -> dict:
         text = "\n".join(lines).strip()
     try:
         return json.loads(text)
-    except json.JSONDecodeError as e:
-        log.error(f"JSON 파싱 실패: {e}\n원문(앞 800자):\n{text[:800]}")
-        return {}
+    except json.JSONDecodeError:
+        # 1차 fallback: array 항목 사이 누락된 comma 추가
+        # `}\n  {` → `},\n  {` (object), `]\n  [` → `],\n  [` (array)
+        fixed = re.sub(r"(})\s*\n(\s*[{\[])", r"\1,\n\2", text)
+        fixed = re.sub(r"(])\s*\n(\s*[{\[])", r"\1,\n\2", fixed)
+        try:
+            result = json.loads(fixed)
+            log.warning("JSON 파싱: comma 누락 자동 보정으로 복구")
+            return result
+        except json.JSONDecodeError as e2:
+            log.error(f"JSON 파싱 실패 (복구도 실패): {e2}\n원문(앞 800자):\n{text[:800]}")
+            return {}
 
 
 def _materialize(selections: list[dict], items: list[NewsItem]) -> list[dict]:
