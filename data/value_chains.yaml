@@ -169,10 +169,11 @@ holdings:
     ticker: FPS
     market: NYSE
     sector: AI 전력 인프라
-    thesis: 데이터센터 전력 분배 장비 (ATS·eHouse·스위치기어). 하이퍼스케일러 CapEx의 L4 옵션 leg
+    thesis: 데이터센터 전력 분배 장비 (ATS·eHouse·스위치기어). 하이퍼스케일러 CapEx의 L4 옵션 leg. **5/14(목) 11am ET 실적 발표가 보유 의사결정 핵심 변곡점**.
     news_queries:
       - "Forgent Power Solutions"
       - "FPS NYSE Forgent"
+      - "FPS earnings May 14"
     upstream: []
     downstream:
       - name: Microsoft
@@ -206,12 +207,14 @@ holdings:
       - "AI capex"
       - "switchgear backlog"
       - "Vera Rubin DSX"
+      - "Forgent earnings"
+      - "FPS Q3 results"
 
   Micron:
     ticker: MU
     market: NASDAQ
     sector: 반도체/HBM·DRAM·NAND
-    thesis: HBM 3사 중 점유율 11% 후발이지만 12-Hi HBM3E·HBM4 NVIDIA 양산 진입 + 서버 DRAM·NAND 슈퍼사이클 동시 수혜. SK하이닉스 헷지·보완 포지션.
+    thesis: SK하이닉스와 함께 HBM 슈퍼사이클 풀 베팅. 12-Hi HBM3E·HBM4 NVIDIA 양산 진입 + 서버 DRAM·NAND 동시 수혜. 점유율 11% 후발이지만 추가 캐파 흡수 여력으로 양극 모두 베팅.
     news_queries:
       - "Micron MU"
       - "Micron HBM"
