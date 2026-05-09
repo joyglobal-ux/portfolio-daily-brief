@@ -207,6 +207,57 @@ holdings:
       - "switchgear backlog"
       - "Vera Rubin DSX"
 
+  Micron:
+    ticker: MU
+    market: NASDAQ
+    sector: 반도체/HBM·DRAM·NAND
+    thesis: HBM 3사 중 점유율 11% 후발이지만 12-Hi HBM3E·HBM4 NVIDIA 양산 진입 + 서버 DRAM·NAND 슈퍼사이클 동시 수혜. SK하이닉스 헷지·보완 포지션.
+    news_queries:
+      - "Micron MU"
+      - "Micron HBM"
+      - "Micron earnings"
+    upstream:
+      - name: ASML
+        ticker: ASML
+        why: EUV 노광장비 — DRAM 미세공정 캐파
+      - name: Applied Materials
+        ticker: AMAT
+        why: 반도체 장비 종합
+    downstream:
+      - name: NVIDIA
+        ticker: NVDA
+        why: HBM 최대 고객
+      - name: Intel
+        ticker: INTC
+        why: 서버 CPU + DRAM 동행
+      - name: Apple
+        ticker: AAPL
+        why: 모바일 메모리
+    global_leaders:
+      - name: NVIDIA
+        ticker: NVDA
+        why: AI 메모리 수요 alpha 결정
+      - name: TSMC
+        ticker: TSM
+        why: AI 반도체 후공정 패키징
+    competitors:
+      - name: SK하이닉스
+        code: "000660"
+        market: KRX
+        why: HBM 1위 (Micron 헷지 짝)
+      - name: 삼성전자
+        code: "005930"
+        market: KRX
+        why: HBM·DRAM 종합 경쟁
+    extra_keywords:
+      - "HBM3E"
+      - "HBM4"
+      - "DRAM 가격"
+      - "NAND 가격"
+      - "TrendForce DRAM"
+      - "DRAMeXchange"
+      - "AI 메모리"
+
   HD현대마린솔루션:
     code: "443060"
     market: KRX
@@ -252,36 +303,5 @@ holdings:
       - "IMO 환경규제"
 
 # Conviction High 진입 대기 종목 — 보유는 아니지만 모니터링 대상
-watchlist:
-
-  Ciena:
-    ticker: CIEN
-    market: NYSE
-    sector: AI 인프라/광통신
-    thesis: AI 인프라 배관공. Scale Across 하이퍼스케일러 3사 채택 + Hyper-rail TAM 확장
-    news_queries:
-      - "Ciena CIEN"
-      - "Ciena optical"
-    downstream:
-      - name: Microsoft
-        ticker: MSFT
-        why: 하이퍼스케일러 광통신 수요
-      - name: Google
-        ticker: GOOGL
-        why: 하이퍼스케일러 광통신 수요
-    competitors:
-      - name: Nokia
-        ticker: NOK
-        why: Infinera 통합 후 경쟁 강화
-      - name: Cisco
-        ticker: CSCO
-        why: 광통신 경쟁
-    global_leaders:
-      - name: NVIDIA
-        ticker: NVDA
-        why: AI 데이터센터 트래픽 발생원
-    extra_keywords:
-      - "Hyper-rail"
-      - "Scale Across"
-      - "1.6T optical"
-      - "OFC 2026"
+# (현재 비활성. 항목 추가하면 자동으로 매일 브리핑에 포함됨)
+watchlist: {}
