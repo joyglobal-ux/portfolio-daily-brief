@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Daily Brief — 2026-05-22</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+  :root {
+    --bg: #0d0d1a;
+    --surface: #14142b;
+    --surface-2: #1c1c3a;
+    --border: #2a2a4a;
+    --text: #e6e6f0;
+    --text-2: #9090a8;
+    --text-3: #6a6a85;
+    --accent: #7c5cff;
+    --accent-2: #4a9eff;
+    --green: #4ade80;
+    --yellow: #fbbf24;
+    --red: #f87171;
+    --link: #8ab4ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  /* Header */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+  .header .meta {
+    color: var(--text-3);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .header .top-line {
+    color: var(--text-2);
+    font-size: 17px;
+    line-height: 1.5;
+    padding: 16px 20px;
+    background: var(--surface);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+  /* Nav */
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 32px 0;
+  }
+  .toc a {
+    background: var(--surface);
+    color: var(--text-2);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .toc a:hover {
+    background: var(--surface-2);
+    color: var(--text);
+    border-color: var(--accent);
+  }
+  /* Stock section */
+  .stock {
+    margin-bottom: 56px;
+    scroll-margin-top: 24px;
+  }
+  .stock-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .stock-name {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .stock-ticker {
+    color: var(--text-3);
+    font-size: 14px;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+  .stock-thesis {
+    color: var(--text-2);
+    font-size: 14px;
+    margin-bottom: 24px;
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+  }
+  /* News group */
+  .news-group {
+    margin-bottom: 24px;
+  }
+  .news-group-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .news-group-title .icon {
+    font-size: 14px;
+  }
+  .news-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .news-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    transition: border-color 0.15s;
+  }
+  .news-item:hover {
+    border-color: var(--accent);
+  }
+  .news-item .title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .news-item .summary {
+    font-size: 14px;
+    color: var(--text-2);
+    margin-bottom: 8px;
+  }
+  .news-item .source-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-3);
+  }
+  .news-item .source {
+    font-weight: 500;
+  }
+  .news-item .link {
+    color: var(--link);
+    text-decoration: none;
+  }
+  .news-item .link:hover {
+    text-decoration: underline;
+  }
+  .events {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    margin-top: 12px;
+  }
+  .events-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .events ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .events li {
+    font-size: 14px;
+    color: var(--text);
+    padding-left: 16px;
+    position: relative;
+  }
+  .events li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--yellow);
+  }
+  .empty {
+    color: var(--text-3);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+    text-align: center;
+    background: var(--surface);
+    border-radius: 6px;
+    border: 1px dashed var(--border);
+  }
+  /* Footer */
+  .footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    color: var(--text-3);
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.8;
+  }
+  .footer a {
+    color: var(--text-2);
+    text-decoration: none;
+  }
+  .footer a:hover {
+    color: var(--accent-2);
+  }
+  /* Mobile */
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 60px; }
+    .header h1 { font-size: 24px; }
+    .header .top-line { font-size: 15px; padding: 12px 16px; }
+    .stock-name { font-size: 20px; }
+    .news-item { padding: 12px 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="meta">2026-05-22 (금) · Portfolio Daily Brief</div>
+    <h1>오늘의 포트폴리오</h1>
+    <p class="top-line">SK하이닉스·마이크론 HBM 슈퍼사이클 본격화, 테슬라 FSD 중국 출시</p>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#sk하이닉스">SK하이닉스</a>
+    <a href="#알멕">알멕</a>
+    <a href="#micron">Micron</a>
+    <a href="#tesla">Tesla</a>
+  </nav>
+
+  <section id="sk하이닉스" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">SK하이닉스</div>
+      <div class="stock-ticker">000660</div>
+    </div>
+    <p class="stock-thesis">HBM 점유율 + AI 서버당 메모리 탑재량 증가, NVIDIA 공급망 핵심</p>
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📰</span> 종목 뉴스</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">SK Hynix Surges 11% as Memory Supercycle and $7.5B HBM Revenue Forecast Drive Target to 3.8M Won - AD HOC NEWS</div>
+<div class="summary">SK하이닉스 11% 급등, 메모리 슈퍼사이클과 75억달러 HBM 매출 전망으로 목표주가 380만원 상향 — 투자자들의 강력한 매수세 반영</div>          <div class="source-row">
+<span class="source">AD HOC NEWS</span>            <a class="link" href="https://news.google.com/rss/articles/CBMixgFBVV95cUxQWVBxcFhHMm5jbVNKeEJkNjUxWkxkRW0yMm1VMmJSQjRZYnFBTlNYcnhPSkZ4dHFGUEVMdnR1djRvM1M4R3k3NTBLTEVvSWE2RlNDSllZT0NqUWlqeGw2bDZ4NHBQcXhOVFlxcVgwNHNsRlRLWjlvbVJwSzNOaUVwbDFGaWs0anQ3SkM3OGRPMmU1bkE4MW9Fb2RBbWl4dzBELXdKR054aE44WGtqalIxQTBXbUdyUlp5NTY0aFRIdWhyV3ZrREE?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">신한證, SK하이닉스 목표가 380만원으로 상향…메모리 급등에 불안요소도 줄었다 - 이코노미트리뷴</div>
+<div class="summary">신한증권, SK하이닉스 목표가 기존 대비 두 배인 380만원으로 상향 — 메모리 가격 급등과 불안 요소 완화, 이익 성장률이 북미 경쟁사 상회할 것으로 전망</div>          <div class="source-row">
+<span class="source">이코노미트리뷴</span>            <a class="link" href="https://news.google.com/rss/articles/CBMid0FVX3lxTE5YcXk5anF6ckk5UXJZUmJlQm13ZmMwQ1B1U0tGUWZzcURTUUpYbkNneEtHcXg2bmE1dVQxSkowR0VlQVlsc2FXa0dEX2FpV2JPRkRkVTc0b21kSE1QYkxKdzlURXh0NFBDdWMydEgtTVZPa3dvWG1N?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">SK Hynix reportedly shifts Cheongju mask fab toward HBM yield push - digitimes</div>
+<div class="summary">SK하이닉스, 청주 마스크 공장을 HBM 수율 향상으로 전환 중 — HBM 생산 확대와 품질 개선에 집중</div>          <div class="source-row">
+<span class="source">digitimes</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxQT2ZxMkZYYk9abmNGbWJHeG1uUmQxazdPaXpOdjQ0NzNXU1BEOG1CTC1RYm43UEFDTjVGYk81T2hvLVdYUmk1TDl1ZWJVaURyWXp5NUxMNkdhMFlfaGtfOG5PXy0wa2dQSVVNWG9iSFlEektjOXBuQ1VXZjRXLXV5dl91Z1VnMmxJUEpJ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">Micron Stock Rises After SK Hynix Surges. The Memory-Chip Boom Is Back. - Barron's</div>
+<div class="summary">마이크론 주가 상승, SK하이닉스의 급등에 따라 메모리칩 붐이 돌아왔다는 분석 — 메모리 업종 전반 강세</div>          <div class="source-row">
+<span class="source">Barron's</span>            <a class="link" href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPWEFlWmdqOXduaDUxZ0dmRmVnQzd5MG5vVHdmNF9TMVVVS2d1VFk3ME1oUVp3NkNLMFFjc1NaMWVIU0NyaS1MWkdTMzhwUEs0cWJjb2FkUnhTZ0JCakxwN3JDaHU0OEVhdThxa0luTXhjWEVUZzZaQ1hwM0pGQV9ScE4xc01XU3RDRHd3OUpicw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Nvidia CEO: Vera Rubin AI platform is the most complex computing system the world's ever made - CNBC</div>
+<div class="summary">NVIDIA CEO, Vera Rubin AI 플랫폼을 세계에서 가장 복잡한 컴퓨팅 시스템이라 소개 — AI 인프라 수요 지속 신호</div>          <div class="source-row">
+<span class="source">CNBC</span>            <a class="link" href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxQajV2NWdwaWJEZGpCMDBvSEVoaDJWdFI5NExWY0MtM0M1UExkZ3VYUkdzNXhTdjJPTEFabXVtZTFTMkFSNEtxeDJqSkdvTEt0RUFWM01ZcVR5emw5WDVNaERuYnBVWlBoaGNFRlFZWFRvT2FQcmNMY3pNOEZJcnJGRW45dEphX1pTSlVmT3lPLThpTGhqT19HWlJZdVk2T29pendreHRROG5TX0xKNlBfVmN3YWVSV3pWS1VyWmwzUXREdkRnQV9mdlBoWkM3NTFh?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">NVIDIA’s Vera Rubin Rack Hit With 435% Memory Price Surge, Pushing HBM4 & LPDDR5X Bill to $2M of $7.8M Total - Wccftech</div>
+<div class="summary">NVIDIA Vera Rubin 랙, HBM4와 LPDDR5X 메모리 가격이 435% 급등해 전체 비용 780만달러 중 200만달러를 메모리가 차지 — 서버당 메모리 탑재량 증가와 가격 상승 확인</div>          <div class="source-row">
+<span class="source">Wccftech</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiugFBVV95cUxPb3dxOGlFcFkyS0NWQ181MnZfLWtsQnpwTldIXzBsSzc0SWswUmVYRWFDdEdpSGJpb1hrT29LdVFRVVBzYk53VzRKQll6aWs4Z3FKU0lDTU5IR1pFaGNOSHV5bWcxNHUtYldxSHo2ZF9nWkVuWDZCVzljREV1VkFfbUF5QU1POE5HLXp0bkJfMzNhLWQ0cm1Ia05UMkJoUWhDSnJwUk80Zlo1eWgwNkpzcDROM2FaT2ZzQmfSAb8BQVVfeXFMTWkxdmd0cWw3dllDWUtNaGcyQmw3THpERngzU0hzRFpwbHFhSWFaWmFhVE1VM2FPdUV5WHF5a3d2b2JPRGdGZmlUaG9pY3liSm5ELUJoNkNBWjJ1cklKWHpDN0NjNWNnSHZDV0hkWlhUUW9pTEM4WGY5RUpFLThJMVVCQjh6dUZYUHdVMlB4UHp1dGZDT2FIWktrY2lPOWtXclVLWWxpZVpGd3dtc1prSWk4RlgtODBPVnlQMFliMHc?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📎</span> 기타·경쟁사</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">HBM 16단 넘자...메모리 3사, 하이브리드 본딩 전환 가시화 - 디지털투데이</div>
+<div class="summary">HBM 16단 이상에서 메모리 3사(삼성·SK하이닉스·마이크론) 하이브리드 본딩 전환 가시화 — 차세대 HBM 기술 경쟁 본격화</div>          <div class="source-row">
+<span class="source">디지털투데이</span>            <a class="link" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE43SHZ3LWhFSDRiSjYwSUZRUzg3aW44X2ZFaURENlJEVFd4R3pKWnNiWVFXU1dyaGhBb00xblVMRWNvM3M3d0x6bDlwcC1RVHh3b2VLMUtpYUw1eTBDUGZQNV9OV0RHMFJDOFdKQkl4enRkM0U?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">"삼성전자 HBM4 하반기 양산 가속화" 해외 투자기관 전망, SK하이닉스는 '주춤' 분석 - 비즈니스포스트</div>
+<div class="summary">해외 투자기관, 삼성전자 HBM4 하반기 양산 가속화 전망하며 SK하이닉스는 주춤할 것으로 분석 — 경쟁 구도 변화 가능성</div>          <div class="source-row">
+<span class="source">비즈니스포스트</span>            <a class="link" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1rVjRiTlRoN0VaS3JvTXlmRXVTNXZXZi0xRlR3aDBITVdScjVRRjA2bTZGODdEdXU4Y1JYX2FlOU13aFhBajFBeW40QjJrVExMcDYzRkd0ZjNjQkFuQ3gwbDI4Q2NuVWcxbkpZcGNCRF8yZkU?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+  <section id="알멕" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">알멕</div>
+      <div class="stock-ticker">354320</div>
+    </div>
+    <p class="stock-thesis">SpaceX 스타십 알루미늄 부품 퀄 + EV 알루미늄 안정 캐시카우</p>
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📰</span> 종목 뉴스</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">[리포트 브리핑]알멕, '회복되는 본업, 밝아지는 미래' - 한국투자증권 - 뉴스핌</div>
+<div class="summary">한국투자증권이 알멕 리포트 발간 - '회복되는 본업, 밝아지는 미래' 제목으로 커버리지 재개 또는 긍정적 평가 시사</div>          <div class="source-row">
+<span class="source">뉴스핌</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE9fakpvOW8yV1Mwc0RxOFVGcVA4U3MxMmw1d3NUTDZTTkI5ZU1TMzVxMHREUDVXZEhNazRTVEJMVTI3U21JS0djV0t0QjNiN09GMWt5N2tPM1Fhd2l1?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">삼전닉스보다 큰 게 온다…스페이스X '스타십3'에 달린 투심 [강경주의 테크X] - 한국경제</div>
+<div class="summary">스페이스X 스타십 V3 발사 임박 - 한국경제는 '삼전·닉스보다 큰 게 온다'며 투자 관심 집중 보도. 알멕의 스타십 알루미늄 부품 퀄 테제와 직결</div>          <div class="source-row">
+<span class="source">한국경제</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE5vSEl5NkhxUjhKVGQxc1phMzgwRVkxTHBVWG1QaFowYjkwRDdRYTFfODkyblpXRUVHZm4xTnFsNVhPSzh4NFVtVDBYaFlUS2hjRXR2MVpHN3lZd9IBVEFVX3lxTE5JTnptWm9vb3lwTUxNTE5XUmJFVjBFblZqRU9XUzBZbzNLRVRVT0hESUpwcHJmc2Rva1BNS2ZwRVhseFJFby1aNWVPLVNUYmg0dk12aA?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">스페이스X ‘스타십 V3’ 첫 발사 임박…달 착륙선 시험 본격화 [우주로 간다] - 지디넷코리아</div>
+<div class="summary">스타십 V3 첫 발사 임박, 달 착륙선 시험 본격화 - 스타십 양산 가속화 시그널로 알멕 알루미늄 부품 공급 볼륨 확대 기대</div>          <div class="source-row">
+<span class="source">지디넷코리아</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFB5Z2dLYnp3VXdvNGx5ZDlTejBRUldTcllGbHJtU0pDSkdHSXdaTjlfcHExRTFVZktUMUhQT2JjcXlfRmJvZndtYmt4aE9qNFJ6ZkprV0dB?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">SK온, 포드와 합작체제 완전 종결…차입금 5조4천억원↓(종합) - 연합뉴스</div>
+<div class="summary">SK온, 포드 합작 블루오벌SK 완전 종결로 차입금 5.4조원 감축 - EV 배터리 공급망 재편으로 알멕의 EV 알루미늄 수요처 구조 변화 가능성</div>          <div class="source-row">
+<span class="source">연합뉴스</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE82UEYzVkxYQXcwSGNiMGJpQnpQa0VOUEVTYXlfalZPeHFHdUppLU1QcXlhT0pBb0xyNkZwaTZDQ3ZuQmV3ejZWME5lRHVxbWcxbTd6YTZKWE4zbUXSAWBBVV95cUxPNVl6bWZwVHhmcnYtaHZYM0R1clRvMzBSY3dBVmtrOW05M2IwOWVTYnZSNVVjQnl0bFloNFZOZU5XZnprTXNHUUlGLTVJUlVlRTdLUmxHaXI0WHB3dFhULVI?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="events">
+      <div class="events-title">📅 Upcoming</div>
+      <ul>
+<li>5/21 스페이스X 스타십 V3(Flight 12) 발사</li>      </ul>
+    </div>
+  </section>
+  <section id="micron" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">Micron</div>
+      <div class="stock-ticker">MU</div>
+    </div>
+    <p class="stock-thesis">SK하이닉스와 함께 HBM 슈퍼사이클 풀 베팅. 12-Hi HBM3E·HBM4 NVIDIA 양산 진입 + 서버 DRAM·NAND 동시 수혜. 점유율 11% 후발이지만 추가 캐파 흡수 여력으로 양극 모두 베팅.</p>
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📰</span> 종목 뉴스</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">Micron Stock Rises After SK Hynix Surges. The Memory-Chip Boom Is Back. - Barron's</div>
+<div class="summary">SK하이닉스 급등에 따라 Micron 주가 상승 — 메모리칩 붐이 돌아오고 있다는 시장 평가</div>          <div class="source-row">
+<span class="source">Barron's</span>            <a class="link" href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPWEFlWmdqOXduaDUxZ0dmRmVnQzd5MG5vVHdmNF9TMVVVS2d1VFk3ME1oUVp3NkNLMFFjc1NaMWVIU0NyaS1MWkdTMzhwUEs0cWJjb2FkUnhTZ0JCakxwN3JDaHU0OEVhdThxa0luTXhjWEVUZzZaQ1hwM0pGQV9ScE4xc01XU3RDRHd3OUpicw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Peace at Samsung Won’t Soothe Micron’s Frenzy: HBM Sold Out into 2027 as Analysts Lift Targets to $1,100 - AD HOC NEWS</div>
+<div class="summary">삼성 노사 합의에도 Micron의 HBM은 2027년까지 매진 상태, 애널리스트들이 목표가를 $1,100으로 상향</div>          <div class="source-row">
+<span class="source">AD HOC NEWS</span>            <a class="link" href="https://news.google.com/rss/articles/CBMixgFBVV95cUxPdFBOdG96MzRlMU04d3ZKR0RiNzRnOVBXdGdHUm5uWUFpRU50TE94Y2RYdjVyZmZhRlB4enFpMkUxVVUtbEp6YTgzWkxRc0xKc2FPT3RhQW80NUdSWWQ2RGd3Y3FCN1hBQm82RjZTd2pvaDdoUm5lWDMtTklhNS1oOW1oR0ItSlNNQ0dyNjhxYWtDZFBvM0JxSlFIeGYtVEFzSlVGQ2pDbnRzQk8yRlBYVm44WWVOOEktcTNzNVpBVF8wZ3RMZHc?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">[News] Micron Reportedly Expands Korea HBM Hiring Amid Samsung Labor Tensions; Annual Pay Reaches KRW 300M - TrendForce</div>
+<div class="summary">Micron이 삼성 노조 갈등 속에서 한국 HBM 인력 채용을 확대 중 — 연봉 최대 3억 원 제시로 삼성 엔지니어 타겟팅</div>          <div class="source-row">
+<span class="source">TrendForce</span>            <a class="link" href="https://news.google.com/rss/articles/CBMi4AFBVV95cUxQVWlJT0VLX1hBdkJoLTF3X21zbXlKWk9obXhuNnQtQmlaRWJQY2JPUjBPNWw5TXk4UzYtTWV6OXZJbnlXeU5xTjloVXp2TGE3bWZfcHliX3J2WXNBWTRSUmJITk9rVmdCcVJUMXBPOGNqSV9ldTAyeTBiM0Fydl83VldWQTlZTzNaUW8tbXNYVV9mWWF0UzNscFgybG5rOXdPaUxYaUpOVzZCMnJKZHlYRDRtcnFBZ2NOZFE1X01PSXB0LVBDV1lkS0pmQTZfWGZrVUg5R1NjYnk1Zi01ZUFFOQ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">Nvidia closes down 2% as investors must wait for new longer-term projections - MarketWatch</div>
+<div class="summary">Nvidia 2% 하락 마감 — 투자자들이 새로운 장기 전망 발표를 기다리는 중</div>          <div class="source-row">
+<span class="source">MarketWatch</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiogJBVV95cUxObjhubEc1ZHNkQ2RrNVd4ZHhEZWZOdmw3UEhIQ0gxczhZZ1VoajMzcHE3d1NmWGpuU3dKMDdZaXYtZEExNlVzeVNVSUVJZndSUjRlczhRQjQtLVB3STJpalJaOHpORjhWdkFEVmQzcm5pY2Q3U1JCWW9KQm5QNVpPeFZ5STdDRFpWbi1uMy00ODFjSFBBY1RwcmlkRGd0dUVzMTNNUmVsaE9kRVd3bXRjNUstRVp5eDlsSktabXpVUTl3VW9qQ0xNei1hWkpxcTlFaHU4ZVVVUHpRb2QwN285bkZGeW1rMEEyUlJFRXBqZkFVNXd4Y2VQTGdCYTdibUJrLUg5b09oRHUzT0d1YUowVUdwdWFuOU1rSkVsaE5ObXpTdw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Nvidia earnings takeaways: Data center revenue nearly doubles, report is strong but stock slides - CNBC</div>
+<div class="summary">Nvidia 실적: 데이터센터 매출 거의 두 배 증가, 강력한 실적에도 주가는 하락</div>          <div class="source-row">
+<span class="source">CNBC</span>            <a class="link" href="https://news.google.com/rss/articles/CBMifEFVX3lxTE1CUUVrUjdLbmR3YWtQZTEwZUt6Z1AyaEx3TGlUdG5hNl9uSFpwZFN2a21mcUFVcnZnQnRMbXV1dlhtUFhfNEdjQ1FzZEg0M1drc1NtMDZ3Rl9obHVzOVlYLWEwTUtZdVRzNEtWam9WNUVjWmE4aG5JSjN5UVrSAYIBQVVfeXFMTU5FY1pRQmVJTFR4Tlk3OFYwdGxfazhmZ1pyV1djakpUR0FfRjIySUFya280eVREVkYzU1BHd3kwMzJVSEYwZURsYXNFdzc3NTZpY0RuN2pwUHFoV1ZBWi1rdnJtaXFZVm5nS1NienNyamplSTktamlpVzBZUTBWa19PQQ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">NVIDIA’s Vera Rubin Rack Hit With 435% Memory Price Surge, Pushing HBM4 & LPDDR5X Bill to $2M of $7.8M Total - Wccftech</div>
+<div class="summary">Nvidia Vera Rubin 랙의 메모리 가격이 435% 급등 — HBM4·LPDDR5X 비용이 총 $7.8M 중 $2M 차지</div>          <div class="source-row">
+<span class="source">Wccftech</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiugFBVV95cUxPb3dxOGlFcFkyS0NWQ181MnZfLWtsQnpwTldIXzBsSzc0SWswUmVYRWFDdEdpSGJpb1hrT29LdVFRVVBzYk53VzRKQll6aWs4Z3FKU0lDTU5IR1pFaGNOSHV5bWcxNHUtYldxSHo2ZF9nWkVuWDZCVzljREV1VkFfbUF5QU1POE5HLXp0bkJfMzNhLWQ0cm1Ia05UMkJoUWhDSnJwUk80Zlo1eWgwNkpzcDROM2FaT2ZzQmfSAb8BQVVfeXFMTWkxdmd0cWw3dllDWUtNaGcyQmw3THpERngzU0hzRFpwbHFhSWFaWmFhVE1VM2FPdUV5WHF5a3d2b2JPRGdGZmlUaG9pY3liSm5ELUJoNkNBWjJ1cklKWHpDN0NjNWNnSHZDV0hkWlhUUW9pTEM4WGY5RUpFLThJMVVCQjh6dUZYUHdVMlB4UHp1dGZDT2FIWktrY2lPOWtXclVLWWxpZVpGd3dtc1prSWk4RlgtODBPVnlQMFliMHc?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📎</span> 기타·경쟁사</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">"우리도 성과급 달라"…SK하이닉스가 쏘아 올린 공, 하청 노조 청구서로 - v.daum.net</div>
+<div class="summary">SK하이닉스 성과급 인상이 촉발한 파급효과 — 하청 노조들도 성과급 요구 청구서 제출</div>          <div class="source-row">
+<span class="source">v.daum.net</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFA0cktKbE1vRWV5Mm9Ea00zTHdNOVcwbFQ4R3I2amV1aDh5a1ZtamlMUXdueENTZnJsYVFRRXhZcWtzcXo2WWRaY3dObjFUV1U?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">미래에셋증권, 삼성전자 목표가 48만원으로 상향…"2분기 디램값 최대 81%↑" - 네이트</div>
+<div class="summary">미래에셋증권, 삼성전자 목표가 48만원으로 상향 — 2분기 DRAM 가격 최대 81% 상승 전망</div>          <div class="source-row">
+<span class="source">네이트</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE9FU2pqempXWWp4NVJlTkxwbHM1bDhtXzJfZ2JGWjdfMXNjOWUwQjBZR19Wc2djRW9NNTQtMXVuSU93N0g4MVYxZ1lwTlRWMEZtbk40?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+  <section id="tesla" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">Tesla</div>
+      <div class="stock-ticker">TSLA</div>
+    </div>
+    <p class="stock-thesis">FSD 전폭 승인 + 로보택시 상용화 + Optimus 양산 옵셔널리티</p>
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📰</span> 종목 뉴스</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">Top FSD Tester: Tesla Self-Driving Is Ready to Go Unsupervised - BASENOR - Tesla Accessories</div>
+<div class="summary">테슬라 FSD 최고 테스터가 무감독 자율주행 준비 완료 평가 — FSD 전폭 승인 테제 지지</div>          <div class="source-row">
+<span class="source">BASENOR - Tesla Accessories</span>            <a class="link" href="https://news.google.com/rss/articles/CBMinAFBVV95cUxPa19jcXBNNU9uSk8xWHpnWkxvbjRkSHNvd1ZpaTczRTZiWmpwa2tXQkpmeUV1Z2dNcHpxblBDekhJb3dleEdSc2dISV9OUWp2d2pRTFdFZTU3UV9CdmhXQW1aZUUzb3A2Y1hGQld3WndWb0pORkQ0Y0hYVnRqUDhsWjhJVThuRHhINEZhX01FY3pOU1ZPMG1TTmtQT2Q?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Tesla’s FSD Finally Arrives in China – But It’s Not the Robotaxi You Ordered - Gadget Review</div>
+<div class="summary">테슬라 FSD가 중국에서 출시됐지만 로보택시는 아직 — 규제 단계적 진행 중</div>          <div class="source-row">
+<span class="source">Gadget Review</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOa2hvMUY3MDRYMGVYMHRZTjdKRVNxUmNzQTY2U05qdGdpQTlqMGpZSXRGdHh1aDJoLUtHSVJiQXNEbGFLejV1RHFtSk04SEFrZWtqeDhJN3M4RzRaaHl6cFVrdlRWMXpQbEo2eThDOTJPcjdWcHJpQzBkSWJpck1HOWZiaTRmdENqMWFBSzNwamFLajFnckNmbjFtQ1BOek0tT0Z3?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Tesla Model S and Tesla Model X Production Face an Uncertain Future as Optimus Robots Take Priority - Techgenyz</div>
+<div class="summary">모델 S/X 생산이 불확실한 미래에 직면, Optimus 로봇 생산이 우선순위 — 양산 옵셔널리티 테제 관련</div>          <div class="source-row">
+<span class="source">Techgenyz</span>            <a class="link" href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9ha1dhZ3dua1M0cmJIc2JCcHE1V2IwTDJBcDhNZTdmTVRMWHNRZG9odVlfS0ZmWW9WSjZOOWUyV2VEcWU2ZnZZejRJcjRrdXZLN2NoTnE5c1BqaUg4V2poRVpCTVA3WWgyZnAtU2R1bkx1VW1nSnpJU25uTE03bXM?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">SpaceX IPO Filing Shows There Is No Finalized Terafab Deal With Tesla, Intel - Investor's Business Daily</div>
+<div class="summary">SpaceX IPO 서류에 테슬라와 Terafab 거래가 확정되지 않았다고 공시 — 기대 선반영 리스크</div>          <div class="source-row">
+<span class="source">Investor's Business Daily</span>            <a class="link" href="https://news.google.com/rss/articles/CBMilwFBVV95cUxNczFHRk9BUmd1aklYdi1nN0RyVFFBZEo4a1JQYnJPOF9Tdk1YYW9BbV9wMXJIcV83a1FzZWlRb2JBVTlSWE9LZy1pVDRfUjlNRFdVcGYyanR6TmtzV29PTGVPdEpqVzgwZGY3ZzlGRWNDYWZyRHh3eldsdzhZWkV1OGhwcnl6VzhxcWFuT0J3M1cwZEdIU1E0?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">SpaceX S-1 reveals Tesla’s Terafab deal is far from done - Electrek</div>
+<div class="summary">SpaceX S-1이 테슬라 Terafab 거래가 아직 멀었다고 공개 — 반도체 수직계열화 불확실성</div>          <div class="source-row">
+<span class="source">Electrek</span>            <a class="link" href="https://news.google.com/rss/articles/CBMihgFBVV95cUxNNkpsTkRYeVVRY0VQTTN5SnVyXzN3Tk00bW0xaWRkMmF0ZkU0aWNLZmFGaHNvRElELURWSlJyRDVsdnZtUnlqOFVrYUhmdVRSMVNvbGVWeDlacHRaSDNOV1d6Nnc0aVRtYXhfdzY4VEVnLWUzTWZYX052UzMzTUwyYTRIRk5pUQ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📎</span> 기타·경쟁사</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">Waymo halts freeway rides after robotaxis struggle in construction zones - TechCrunch</div>
+<div class="summary">Waymo가 공사구역에서 로보택시 문제로 고속도로 운행 중단 — 글로벌 자율주행 경쟁사 기술적 한계 노출</div>          <div class="source-row">
+<span class="source">TechCrunch</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxPRVBVRllkREFKanhyVkxyVENYX3BWZEZuVnVueXVSNDNMNWRVNlNrSHBMRUd1UmNfUHJBai1hTnpDLWltTUxLbHJqZjM2Nk9uX09RNzBVRW5RY2w4ckU0aWNPTGNvU3RraWJ2RWNUaW8zSm96clR6VUdsd2Y4aFFfRXJKTUVYSFFraGJWbzQyRjlxWW1tZnE4TmJDYV9TZy02WGd6OWs4bDRKelE?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">XPENG Starts Producing Robotaxis - CleanTechnica</div>
+<div class="summary">XPENG이 로보택시 양산 시작 — 중국 로컬 경쟁사가 테슬라보다 먼저 양산</div>          <div class="source-row">
+<span class="source">CleanTechnica</span>            <a class="link" href="https://news.google.com/rss/articles/CBMieEFVX3lxTE9vYWt0UlhyZFk1TVhiUnQybWJvVVhtS1BaNVN6V3Jwek51UEY5VUZoeHRqN08yUGs3ZHdUQ2R1U1A5ZndoV29GN3BjZ0RRdWF3cVFOUnpyamloc0g5SGVlWmxhVXNSMnQtTGhfdUxHTkYwb2padGUzadIBgAFBVV95cUxNTTdMWVg5SUZMc0tqYklQN0Qyak50eTE3Tlhqc056RWZQM041TGxHLUZRQ1ZQMm5kSE9hdFZZY1BiRTFTYmdubnJBOVJHa0VFRnlGTlBkbVdUZkZsQTZDczVFTFhiOXZPWnplSll5TmRUeGxnVXdmQV9kbk1ocjBjcw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="events">
+      <div class="events-title">📅 Upcoming</div>
+      <ul>
+<li>6/12 테슬라 주요 이벤트 예정(Motley Fool 예측)</li>      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>Generated 2026-05-22 07:58 KST · 다음 갱신 매일 07:00 KST</div>
+    <div>데이터: 구글시트 · Google News RSS · Claude API · <a href="https://github.com/joyglobal-ux/portfolio-daily-brief" target="_blank" rel="noopener">소스</a></div>
+  </footer>
+
+</div>
+</body>
+</html>
