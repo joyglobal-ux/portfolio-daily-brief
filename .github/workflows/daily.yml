@@ -1,11 +1,11 @@
 name: Daily Brief
 
 on:
-  # 22:00 UTC Sun-Thu = 07:00 KST Mon-Fri (한국 평일 아침).
-  # 한국 공휴일은 main.py가 자체 체크해서 스킵.
-  schedule:
-    - cron: "0 22 * * 0-4"
-  # 수동 실행 가능
+  # 자동 cron 중단 (2026-05-24). 사용자가 자주 안 봐서 on-demand 전환.
+  # 다시 매일 자동 생성하려면 아래 schedule 주석 해제:
+  #   schedule:
+  #     - cron: "0 22 * * 0-4"   # 22:00 UTC Sun-Thu = 07:00 KST Mon-Fri
+  # 현재는 수동 실행만 (Actions 탭 Run workflow, 또는 로컬 실행)
   workflow_dispatch:
 
 permissions:
