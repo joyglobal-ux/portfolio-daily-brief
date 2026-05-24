@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Daily Brief — 2026-05-24</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+  :root {
+    --bg: #0d0d1a;
+    --surface: #14142b;
+    --surface-2: #1c1c3a;
+    --border: #2a2a4a;
+    --text: #e6e6f0;
+    --text-2: #9090a8;
+    --text-3: #6a6a85;
+    --accent: #7c5cff;
+    --accent-2: #4a9eff;
+    --green: #4ade80;
+    --yellow: #fbbf24;
+    --red: #f87171;
+    --link: #8ab4ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  /* Header */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+  .header .meta {
+    color: var(--text-3);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+  .header .top-line {
+    color: var(--text-2);
+    font-size: 17px;
+    line-height: 1.5;
+    padding: 16px 20px;
+    background: var(--surface);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+  /* Nav */
+  .toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 32px 0;
+  }
+  .toc a {
+    background: var(--surface);
+    color: var(--text-2);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .toc a:hover {
+    background: var(--surface-2);
+    color: var(--text);
+    border-color: var(--accent);
+  }
+  /* Stock section */
+  .stock {
+    margin-bottom: 56px;
+    scroll-margin-top: 24px;
+  }
+  .stock-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .stock-name {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .stock-ticker {
+    color: var(--text-3);
+    font-size: 14px;
+    font-family: 'SF Mono', Menlo, monospace;
+  }
+  .stock-thesis {
+    color: var(--text-2);
+    font-size: 14px;
+    margin-bottom: 24px;
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+  }
+  /* News group */
+  .news-group {
+    margin-bottom: 24px;
+  }
+  .news-group-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .news-group-title .icon {
+    font-size: 14px;
+  }
+  .news-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .news-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    transition: border-color 0.15s;
+  }
+  .news-item:hover {
+    border-color: var(--accent);
+  }
+  .news-item .title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .news-item .summary {
+    font-size: 14px;
+    color: var(--text-2);
+    margin-bottom: 8px;
+  }
+  .news-item .source-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-3);
+  }
+  .news-item .source {
+    font-weight: 500;
+  }
+  .news-item .link {
+    color: var(--link);
+    text-decoration: none;
+  }
+  .news-item .link:hover {
+    text-decoration: underline;
+  }
+  .events {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    margin-top: 12px;
+  }
+  .events-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .events ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .events li {
+    font-size: 14px;
+    color: var(--text);
+    padding-left: 16px;
+    position: relative;
+  }
+  .events li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--yellow);
+  }
+  .empty {
+    color: var(--text-3);
+    font-style: italic;
+    font-size: 14px;
+    padding: 20px;
+    text-align: center;
+    background: var(--surface);
+    border-radius: 6px;
+    border: 1px dashed var(--border);
+  }
+  /* Footer */
+  .footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    color: var(--text-3);
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.8;
+  }
+  .footer a {
+    color: var(--text-2);
+    text-decoration: none;
+  }
+  .footer a:hover {
+    color: var(--accent-2);
+  }
+  /* Mobile */
+  @media (max-width: 640px) {
+    .container { padding: 24px 16px 60px; }
+    .header h1 { font-size: 24px; }
+    .header .top-line { font-size: 15px; padding: 12px 16px; }
+    .stock-name { font-size: 20px; }
+    .news-item { padding: 12px 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="meta">2026-05-24 (일) · Portfolio Daily Brief</div>
+    <h1>오늘의 포트폴리오</h1>
+    <p class="top-line">SK하이닉스·마이크론 HBM 강세, 현대차 중동부진·테슬라 FSD 우려</p>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#sk하이닉스">SK하이닉스</a>
+    <a href="#알멕">알멕</a>
+    <a href="#micron">Micron</a>
+    <a href="#현대차">현대차</a>
+    <a href="#티엘비">티엘비</a>
+    <a href="#tesla">Tesla</a>
+    <a href="#현대오토에버">현대오토에버</a>
+  </nav>
+
+  <section id="sk하이닉스" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">SK하이닉스</div>
+      <div class="stock-ticker">000660</div>
+    </div>
+    <p class="stock-thesis">HBM 점유율 + AI 서버당 메모리 탑재량 증가, NVIDIA 공급망 핵심</p>
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📰</span> 종목 뉴스</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">삼전·하이닉스 등 5대 기업 수출 비중 44%…반도체 나홀로 질주에 임금도 ‘K양극화’ - 중앙일보</div>
+<div class="summary">삼성전자·SK하이닉스 등 5대 기업이 한국 전체 수출의 44%를 차지하며 반도체 중심 수출 쏠림 현상이 심화되고 있음 — 수출 증가분의 83%를 차지할 정도로 집중도가 높아짐</div>          <div class="source-row">
+<span class="source">중앙일보</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE55UGhMYWtlWUZiY3FRd1RmR2xLeGZEc0JyR1FzRTBZcHhSeGV2UWFnRHg2YVJnRHFvZXZYRU52UkV0SkxmTzdOWkxHMklJNmlRVi1xZHRB?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">범용 DRAM 넘어 HBM 가격까지 들썩…SK하이닉스, 전 제품 판가 인상 랠리 돌입 - 핀포인트뉴스</div>
+<div class="summary">SK하이닉스가 범용 DRAM을 넘어 HBM 가격까지 인상하며 전 제품군에서 판가 인상 랠리에 돌입 — HBM 수요 강세와 가격 협상력 강화 신호</div>          <div class="source-row">
+<span class="source">핀포인트뉴스</span>            <a class="link" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE4xQnFCTEZTZXJyRkx2Q0ZqU0dYcWR4N29MVlJORHVkVERzc3ZtOWpqYVFzRmFkNFVtTExaaGpZdWZsM2llU1BDaVAyZDQ5WnJxck5OVklVV1ZiYzNkWC0yemh3R05XMXZGSXpUeXZaSTFzem_SAXdBVV95cUxQczVYZGlQUDgxVjNRSjhnVF9VWG1obU9YSVhfaEdHV21jdXU0TlVrd08xcGtVdjZKLUJVcktxUVdKeUlYc24ybkZaYlF0eHlqOGVicXdQX1Y2Q3B6NnhIZ2pudURpc2hhbEd5ZHpvazY2TkZWY01rdw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">EXCLUSIVE: Nvidia CEO Jensen Huang Is Flying To Taiwan Nearly Every Month Asking For More GPUs – The Answer Remains Not Yet - Yahoo Finance</div>
+<div class="summary">Jensen Huang 엔비디아 CEO가 대만에 거의 매달 방문하며 더 많은 GPU 생산을 요청하고 있으나 아직 충분한 공급 확보가 안 되고 있음 — AI 인프라 수요 지속 압박</div>          <div class="source-row">
+<span class="source">Yahoo Finance</span>            <a class="link" href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOWmJYbzNiSk1XTmt2TGlfWWlUMDlOOFprT3FoaWp1WGxvQ2xLUjZFQmlsNXMtOG1zaE5lQ1F3ZFROOUdiN1cybnBieUlJelhoTTRxa3JLVDVFdjl2Y05VMDdyQ1VORklYeFNvekZfU3BCRnNfaXZ6UlBvMWlsb0JnNmRtTGUyS1FZbmI5WWtpVDNzeVJPZWtCTl9aekNfSHJwZXRoXw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">NVIDIA CFO Teases Rivals Caught Off Guard by Memory Shortage, Says Her Firm Knew Prices Would Soar - Wccftech</div>
+<div class="summary">엔비디아 CFO가 경쟁사들이 메모리 가격 상승을 예측하지 못한 반면 자사는 사전에 알고 대비했다고 언급 — HBM 공급망 선점의 중요성 강조</div>          <div class="source-row">
+<span class="source">Wccftech</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPeXFjcm1RcVJ4dkFVT2xEbzhRZDJIRld1ZUU2aTVMX29SdWFoRGRBeGhpZExYeWFSMGR2TEFMT1lGNHVOUUE5SUlBYVhZTUtSeXY3LURpb25rb0FTZFFUR0Zwa1VoQXVpTzkyTnZKM25EWUp0bTJUOVoxbzlkXzh2TGlpTW43N2w1SHFzTzRGU0ZKUWI4SGhCdHVmdEl5dUFnWklPOVFDT1lCaXd6TlFYY0ZMRTZ4cXBURWww0gHAAUFVX3lxTE9sU0xtSnZKUF9Yc0xFNkp1TUQ1MUthWnlHa1JCS1dVTnpPdGVmZ0RPc3RBTXJON2JmSGNCNjFQakZ1Uk5FdklvNDdIVHBiVHJ0WFA0eUs1bWZSVWJtVFlhMnpxR3lqbzVWUXhLbW91VjZHcDhhMmMxcmt0VWN5ZGpHREYtd0FPemhfSWlIYk1JY1dNTjZkT2VlM25SNXV3SjlpV0RLZzhoVWFJUnFIWkdtZm5aNUFWUEt3X3F3V1FkeA?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Micron Begins First U.S. Production of 1α DDR4 - thelec.net</div>
+<div class="summary">마이크론이 미국 내에서 최초로 1α DDR4 양산을 시작 — 미국 내 DRAM 생산 확대로 경쟁 구도 변화 가능성</div>          <div class="source-row">
+<span class="source">thelec.net</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA5b1FaUWdlM0dXbTN6UXB3REJZWG5RZTBTTUdySEFOUGpSVzNRdko0Qll2Zlpkc2VRTDFKX2FEY2diRmRHU05wb3VGWFNieC04SllFbVJ3T2xBQjRSRjVvZnZEaHZjYjA?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+
+  </section>
+  <section id="알멕" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">알멕</div>
+      <div class="stock-ticker">354320</div>
+    </div>
+    <p class="stock-thesis">SpaceX 스타십 알루미늄 부품 퀄 + EV 알루미늄 안정 캐시카우</p>
+
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">'There's mania': Strategists weigh in on looming SpaceX IPO - Yahoo Finance</div>
+<div class="summary">SpaceX IPO 임박에 전략가들이 '열광(mania)' 수준이라 평가 — 알멕의 SpaceX 알루미늄 부품 공급 테제와 직접 연관</div>          <div class="source-row">
+<span class="source">Yahoo Finance</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiowFBVV95cUxQZnhkSHFxb3I2eGhaNGFYaTY3YXB0dnZDanYzWUZ6aDRxRDNxY25TalE5Q2tQRHpuS3B6QTd1S1FObXIwNGg1THNKYkNZeHVMeF9HMVRtODJDNGpzcjRzVEhfUDJjTFI4ODZxUFIxNWFsTkNveW5sZTRkOXphQ1ZuOFhfSHNYSEpYRS0zLURGbllvWjlPTTQxUF9fT0J2RnJmZTMw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">SpaceX’s $2 trillion question: Visionary empire or Starlink house of cards? - CTech</div>
+<div class="summary">SpaceX 2조 달러 밸류에이션 논란 — Starlink 사업 지속가능성 vs 비전 논쟁, IPO 전 투자자 심리 주목</div>          <div class="source-row">
+<span class="source">CTech</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5SbzN3a0ZIWHc0MVBMaFFZVEI1T0NwZGdRMkZvVFJXNWt0TEpUNU04bFNvWUZqUW1hWUpLSl83Q0Zad2RDX01icGw4enBXQ2c0OTZkdkNLNHVReFoxNXhrOGZoMDhHOVk?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Elon Musk Just Linked SpaceX, xAI, Tesla, and Nvidia Into 1 Trade. Here's How to Position Your Portfolio. - Yahoo Finance</div>
+<div class="summary">머스크가 SpaceX·xAI·Tesla·Nvidia를 하나의 트레이드로 연결 — 포트폴리오 포지셔닝 전략 제시</div>          <div class="source-row">
+<span class="source">Yahoo Finance</span>            <a class="link" href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPdFo2ZEZkWE1MY3JWaVU3NFNJblNNTjI3WnhmXzlHOVdId2RkZDVyWXo3RF9IWVFEa3VOb1NwRWN5bHlrVVBSUXp2MVZDd2EtMUljX1FDRXhLU1IxdFk5ZVZMVEtKcEV3cmZ0RXB1LUo4WVN5VVh1X1lGQ2lGYXQ4VUJsUHlTVVoyRHNHR2VpZWtoLTB4ZVhySw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📎</span> 기타·경쟁사</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">SK온, 미국 테네시 공장 단독법인 전환…재무구조 강화 - 시사포커스</div>
+<div class="summary">SK온, 미국 테네시 공장 단독법인 전환으로 재무구조 강화 — EV 배터리 밸류체인 구조조정 동향</div>          <div class="source-row">
+<span class="source">시사포커스</span>            <a class="link" href="https://news.google.com/rss/articles/CBMib0FVX3lxTE0xdDVscFFFdWp2d1Q5Q3ZjZEVwYkJOSGREVExYNnZQS3JseDhVMWhER1hnNEtqWWl6WXN0YVdoZEE4SkZoakZRSGZoU1VTV1NTazJDQmhEd0JGWkdQa0tTVnVJRmE4LTBleFlEd0VjWQ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+  <section id="micron" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">Micron</div>
+      <div class="stock-ticker">MU</div>
+    </div>
+    <p class="stock-thesis">SK하이닉스와 함께 HBM 슈퍼사이클 풀 베팅. 12-Hi HBM3E·HBM4 NVIDIA 양산 진입 + 서버 DRAM·NAND 동시 수혜. 점유율 11% 후발이지만 추가 캐파 흡수 여력으로 양극 모두 베팅.</p>
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📰</span> 종목 뉴스</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">Prediction: Micron Technology stock will be worth at least $1,500 in 1 year - MSN</div>
+<div class="summary">Micron 주가가 1년 내 최소 $1,500에 도달할 것이라는 애널리스트 전망 — AI 메모리 수요 강세가 근거</div>          <div class="source-row">
+<span class="source">MSN</span>            <a class="link" href="https://news.google.com/rss/articles/CBMi6AFBVV95cUxNSmFQQW80TUFVaVJNVFd3SG82MTlNekIybnFpZ3hhTW9Ka3EyOTd5Wkpyb2hOb0cwM1c4eHVYRWxDNGtFYXo5azdPNy11Yk9BTWlCTFMxaFJtVGY0ZUlzVFRvUWFjYzI4ZmV4aEtEMW54bkEtZlU2TDI2Mk01VXNSaW05c3QzYUZ2UGEtb2lnNF9GXzZ6b292X0pSTE43aDhsS04wZ2ZaWGNCblNGSnFDTDUtVDBmMmhCbTRhWjBmRGVrSk8wU1hkdG0yekNiR3lPT0RiMUQ2ekozM2RENmQzdzZKVnFBemJZ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Micron’s U.S. DRAM Expansion Aims To Cement Role In Critical Infrastructure - simplywall.st</div>
+<div class="summary">Micron이 미국 내 DRAM 생산 확대를 추진, 핵심 인프라에서의 역할 강화 목표 — 지정학적 공급망 리스크 대응</div>          <div class="source-row">
+<span class="source">simplywall.st</span>            <a class="link" href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxPbGptbWNaRmFMdDlqdDB4WUFzVEUtZldZYldqVkVXaTJPM1ZVbGl1eTBtZnltOWM2MndqZ0lsTEpSVzZKOHJtbDlUMS1LVXZxdFd6Q0Z4LVV0MkJ5NWlTMkdhTjlSOG9SeHRRa1ZfRlJpRklVX1g3RHRSaVNfaVRhbFRMbFlLLVVXemtuSWJheEkzVnExQkozbHQ5Q3hpUnBTNTRpdnByVGh2UFdObzAwMWg5Qk9kSEYwSEE1dzMwcmlrQUpiYkQzczY3M3lHMmxiM1UwRlcxd9IB3AFBVV95cUxOSUN1WUJoVmhleGVsLTdjc3A2VW5QTFlleXM0c2FIbVBNQ3dnbE1nbVFVRDkwN0FNLTE4Ykk5TVJ3bW5jODY5Z2o1RTU5LUJEN0p0SjduRnVKRWpfZXlScXdUSnEtUUFLWVNMdXU3Wm1QdVNnNW1IWDlYcjFreEFKbVFkZTJIN3JIOEtlX3J3VlZwdDVFSV8xUWgwdUdySzhVeDNsRW5SblJ1dmoxeF8yYUJhM3phNmJobTNuRjdvVFFtbTVVbjRSWEhfTFI4cHNyNjFYYnEzQ2hnNWxZ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Micron’s Record Margins and Accelerated HBM4 Ramp Signal Sustained AI Memory Dominance - AD HOC NEWS</div>
+<div class="summary">Micron 기록적 마진 달성 + HBM4 양산 가속화 — AI 메모리 시장 주도권 지속 신호</div>          <div class="source-row">
+<span class="source">AD HOC NEWS</span>            <a class="link" href="https://news.google.com/rss/articles/CBMixwFBVV95cUxQOE9ybzB5d080dnpKck9NOTNVZndJc2FwdjItM0MyR0I3YXNmSC1JN2kxWWd4TVZGdVdVNXpWQkpWTDNWLTFtQjROMWNfRTZuS0ZuV1RCZVdJQUVmdDM1NmJZaHpoQlRicnZWRURRaUljdDZ1Q1ZjdnFvVmk0YlYzNmpYOFZhdS1NUEtOYlNZaGd1NTNadkhfTmFpNG5xcG5JRXhEM0UtT3R4RnJWTl9uVG1CUXNmUnhtWVpqeFd5RDFSRlZQZjBn?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">EXCLUSIVE: Nvidia CEO Jensen Huang Is Flying To Taiwan Nearly Every Month Asking For More GPUs – The Answer Remains Not Yet - Yahoo Finance</div>
+<div class="summary">NVIDIA CEO 젠슨 황이 거의 매달 대만 방문하며 더 많은 GPU 공급 요청 중 — 공급 부족 지속</div>          <div class="source-row">
+<span class="source">Yahoo Finance</span>            <a class="link" href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOWmJYbzNiSk1XTmt2TGlfWWlUMDlOOFprT3FoaWp1WGxvQ2xLUjZFQmlsNXMtOG1zaE5lQ1F3ZFROOUdiN1cybnBieUlJelhoTTRxa3JLVDVFdjl2Y05VMDdyQ1VORklYeFNvekZfU3BCRnNfaXZ6UlBvMWlsb0JnNmRtTGUyS1FZbmI5WWtpVDNzeVJPZWtCTl9aekNfSHJwZXRoXw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Why ASML Holding stock just popped - MSN</div>
+<div class="summary">ASML 주가 급등 — AI 반도체 투자 확대로 노광 장비 수요 증가 전망</div>          <div class="source-row">
+<span class="source">MSN</span>            <a class="link" href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQdzV5RjVCRlB4TU55Zm1IRTd5N3hJX1VDNDhOS3VmcWtzcDdUUjloR2JIdzZBNm90Nm9CcWFDUlh6bk5RMHkyNXRoUno4ZUd4cWo0bUNpZEZMZzUzWEJjNGNuNVFaeEN1Szg5YTZVVlg1UVc4WTc3MkszZUEwRkVKNjlEQlhydU85RzEwdC1idkRLSnJhNV9BV2RzNEFEZVRwN3RrNnhrY24yTUxlZmUxMjdra3Y?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">NVIDIA CFO Teases Rivals Caught Off Guard by Memory Shortage, Says Her Firm Knew Prices Would Soar - Wccftech</div>
+<div class="summary">NVIDIA CFO가 경쟁사들이 메모리 부족 사태에 대비하지 못했다고 언급 — 자사는 가격 상승 예측했다고 밝힘</div>          <div class="source-row">
+<span class="source">Wccftech</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPeXFjcm1RcVJ4dkFVT2xEbzhRZDJIRld1ZUU2aTVMX29SdWFoRGRBeGhpZExYeWFSMGR2TEFMT1lGNHVOUUE5SUlBYVhZTUtSeXY3LURpb25rb0FTZFFUR0Zwa1VoQXVpTzkyTnZKM25EWUp0bTJUOVoxbzlkXzh2TGlpTW43N2w1SHFzTzRGU0ZKUWI4SGhCdHVmdEl5dUFnWklPOVFDT1lCaXd6TlFYY0ZMRTZ4cXBURWww0gHAAUFVX3lxTE9sU0xtSnZKUF9Yc0xFNkp1TUQ1MUthWnlHa1JCS1dVTnpPdGVmZ0RPc3RBTXJON2JmSGNCNjFQakZ1Uk5FdklvNDdIVHBiVHJ0WFA0eUs1bWZSVWJtVFlhMnpxR3lqbzVWUXhLbW91VjZHcDhhMmMxcmt0VWN5ZGpHREYtd0FPemhfSWlIYk1JY1dNTjZkT2VlM25SNXV3SjlpV0RLZzhoVWFJUnFIWkdtZm5aNUFWUEt3X3F3V1FkeA?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📎</span> 기타·경쟁사</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">범용 DRAM 넘어 HBM 가격까지 들썩…SK하이닉스, 전 제품 판가 인상 랠리 돌입 - 핀포인트뉴스</div>
+<div class="summary">SK하이닉스가 범용 DRAM을 넘어 HBM 가격까지 전 제품 판가 인상 랠리 진입 — 메모리 슈퍼사이클 지속</div>          <div class="source-row">
+<span class="source">핀포인트뉴스</span>            <a class="link" href="https://news.google.com/rss/articles/CBMic0FVX3lxTE4xQnFCTEZTZXJyRkx2Q0ZqU0dYcWR4N29MVlJORHVkVERzc3ZtOWpqYVFzRmFkNFVtTExaaGpZdWZsM2llU1BDaVAyZDQ5WnJxck5OVklVV1ZiYzNkWC0yemh3R05XMXZGSXpUeXZaSTFzem_SAXdBVV95cUxQczVYZGlQUDgxVjNRSjhnVF9VWG1obU9YSVhfaEdHV21jdXU0TlVrd08xcGtVdjZKLUJVcktxUVdKeUlYc24ybkZaYlF0eHlqOGVicXdQX1Y2Q3B6NnhIZ2pudURpc2hhbEd5ZHpvazY2TkZWY01rdw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">AI가 끌어올린 메모리 호황… '초거대 사이클' 뒤 "과잉" 경고 - 글로벌이코노믹</div>
+<div class="summary">AI가 끌어올린 메모리 호황 속 초거대 사이클 이후 '과잉' 경고 나와 — 장기 사이클 리스크 점검 필요</div>          <div class="source-row">
+<span class="source">글로벌이코노믹</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxQLXlSV0hwYUEtVndQc1hCR0ZqV0VxTWU1R3IxQk5wZUR0b1RJQ1FhNzludXlwdmg5Q0VRNkFVQXJoOXJMdHBjS3NFSTlKdnVZVEx1RUZHZWluY2JaU08zSFBjeFA1VF9SUndkekJsZWFpb0dqcE02OTNEZElRaTNuTkExdzBabWYx?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+  <section id="현대차" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">현대차</div>
+      <div class="stock-ticker">005380</div>
+    </div>
+    <p class="stock-thesis">글로벌 EV·하이브리드 전환 + 미국 현지생산(IRA·관세 대응) + 보스턴다이내믹스 로보틱스 옵셔널리티. 인도·미국 시장 점유율 확대.</p>
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📰</span> 종목 뉴스</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">Unraveling the tactics guiding Hyundai dealers through climbing incentive targets, elevated inventory, and more - Car Dealership Guy News</div>
+<div class="summary">현대차 딜러들이 상승하는 인센티브 목표치, 높은 재고 수준 등 도전에 직면 — 미국 시장 판매 압박 신호</div>          <div class="source-row">
+<span class="source">Car Dealership Guy News</span>            <a class="link" href="https://news.google.com/rss/articles/CBMizgFBVV95cUxOZzl1NWxTb2JTX05ZVUtsaWdlVm1DelhYd3BKN0J0TXJZMkpaTjEzZ2NkQ29Ib195TEVrN0p1X213TmZ2bHg0MU5MMXFuM0ZkMWNQeFNCcVJ4dXlsb2tsa1dCUXpocFFpc0lTMUJtZlh3RWc1TDFuNndsUG5iY1NCOWxIbGEwVDlCbnJVcWdnWWdMVmY1S1l6RU5BQ3lfTzgtdkxQUWVFQkp4LVpGRTgycWROaWFBcnU1SElxYmRfdnVMMVJYY3VDN05KMDJjUQ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">'고수익' 중동서 판매량 28% '뚝'…발목 잡힌 현대차그룹, 돌파구는 - 머니투데이 - 머니투데이</div>
+<div class="summary">현대차그룹 중동 판매량 28% 급락으로 고수익 시장서 타격 — 중동 불안 여파로 주요 수익원 악화</div>          <div class="source-row">
+<span class="source">머니투데이</span>            <a class="link" href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBwcHpVekV0TUtWbXV0NEVkYmU0b1JkWEgxTU12ZG84Und0LXBiYUc3X3ZRcnpZdkh6djQ3N003OUVMRmdlMzg1Z3dBWkpyd1pOdnlfdWprMU11czJlUXRhMlF3eXR6Ym9uQU1OatIBckFVX3lxTE4xVUlxZ2NMbEZDdFZVZUxKZnJHdllueFliMGtfRUdHSTlWT1FmYV95THcwaWRkNFlPcUJXcHVDV2o2ckZaZGVWRlBTaHpvbE5Pa1RQemJIS05xa0xxa2R1WXBEUlhfd0JZb0xxYm5UaDJaZw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Hyundai recalls more than 421K vehicles over software brake issue: NHTSA - WJAR</div>
+<div class="summary">현대차, 소프트웨어 브레이크 결함으로 미국서 42만대 이상 리콜 발표 — NHTSA 공시</div>          <div class="source-row">
+<span class="source">WJAR</span>            <a class="link" href="https://news.google.com/rss/articles/CBMi3AJBVV95cUxPc2JNQjRyUURiTW5yeUp4c1JLZ3FQVWZXRE5NREVIcmQ5WEdnV3JrTDJLSlpSU0ZvOXUzTktYenlBanZwY3FURXVsLXJSbnZqaFNiU0RScU1BQXBnaUFKT2hmb054UFdCZ2x6RjJ4LTdiSzlMcDE2NFM0dExhanBWdkRfd1lsdEhSaEJwREZzNHNpamNzdmFkRzh3RjA4OE1leDU4ZUxldG1MTjJ5cDktalJDZDlKdkN1OGFuNDJndUlQZ1BHRWZET1J6ckx4bjFyd1lpZG1oRHlyU0lRU3JrVnNvTzc3ZERVX3NrR0JQUklzRmlrdHUya2Zwc2hXYUpfS3VhOUdXQlF6V1dmNTFWNi0yLThWRHlHTGlTaGFiSDJvN1lYZ0w3Vmx0cWFXaE1GYlBiV2RzQ3BNb1E4amRIejdYS2pOdTlxNG1RV0ZDMzFNUWNJUVJuV252NjM?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">BYD launches new Atto 3 with flash charging, new batteries and a low price - The Driven</div>
+<div class="summary">BYD, 신형 Atto 3에 급속충전·신규 배터리 탑재하며 저가 공세 — 글로벌 EV 경쟁 심화</div>          <div class="source-row">
+<span class="source">The Driven</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPMjc3a3A4LTJXWlJQSFZpRFR2RzRYNzhPd25lV3ZsR3VXUzg3SUpMQmtKcV9WOEZMY0ZmaGY5NTl4eHFmWXNfMkRtQjFNY1F3OHVqWDd2ZnFUOHVzNFd5bWFEWFJRdXhaM19zN2ZEV3NZS1RSOFZWQ2oyakpWZk1vRTQxV3c4TjBzcVZ6ZWhoRUxiS3ljb2NfVy1SNFd0ay15a0h6ckFSOXBHUQ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">BYD Sealion 06 DM-i arrives at dealerships ahead of May 26 launch with up to 310 km EV range - CarNewsChina.com</div>
+<div class="summary">BYD Sealion 06 DM-i, 5월 26일 출시 앞두고 딜러 입고 시작, EV 주행거리 최대 310km — 하이브리드 라인업 확대</div>          <div class="source-row">
+<span class="source">CarNewsChina.com</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxQRUlIMm10djZPb1RkTDdsY0F4VUJGUlpDRTdKZzVLb3J5Wm01UlZsR1lEMnJpTWFlMUdjb3drRGloS1k3OUN3RlViT0drZGgzWG1WMF9oallPOFZZeEhDOUJ4OTZnWVNJbVpyYTk4WFRZMlU4ZXFvY1RubjRyQUZxWE55Q0szR3JpRnJJWHgtNVlmanlLcjIxQzhiMDB6ZXMwT3Z5bjk5bTlqN1hoR3hnUjlCbXFsN1lqbFpyQTR1UkZJZE9WZTI4dw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">From Tesla to BYD, Chinese-made EVs capture one-third of Korea's market - Korea JoongAng Daily</div>
+<div class="summary">테슬라·BYD 등 중국산 전기차가 한국 시장 점유율 1/3 차지 — 국내 시장서도 중국 EV 위협 가시화</div>          <div class="source-row">
+<span class="source">Korea JoongAng Daily</span>            <a class="link" href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxOX0w0V3hlS2dvVklMcWZndDFZdzBTX0Zhc0NsUG9xUlFFWS0tRXVYZGRRMGkxclpFMUZZdmtRNEI2WFlNYVBkZ2hsTFZsbmJHdVZzMWlERHlKb09Yd25mN0lPQ1h5ZHVkRkRVclhnVC1HZWhoNnJPRzh4X1lPRDc2dG84TjdNdnZMSmJvU1J4eFlmR2g5bWRRQ05sZkEwSnNpcC1jMnBKMGlOWEVUMUtVRWhxclpJUGgxTWJaaVpQVmp2MC13TE5xOXRVTHhCY0V3eXRYVGZnMThJSWg2UnZr?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📎</span> 기타·경쟁사</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">하이브리드차 비중 10% 돌파…고유가에 친환경차 전환 가속 - 이투데이</div>
+<div class="summary">국내 하이브리드차 비중 10% 돌파, 고유가 속 친환경차 전환 가속 — 하이브리드 수요 트렌드 확인</div>          <div class="source-row">
+<span class="source">이투데이</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE8xdm9OTlNpUUNlOFhNVDctN3Vyb2s1Y2J1bHNmOVVtRVZLaFQ2TEFRZTk1Q3o1ek52ZFI1a3lrbmc0VFBZekVPS1RZRHhTUy1ud0tsSQ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">보스턴다이나믹스 상장설 ‘솔솔’…현대차그룹 지배구조 개편에 쏠린 눈 [비즈360] - 헤럴드경제</div>
+<div class="summary">보스턴다이내믹스 상장설 부상, 현대차그룹 지배구조 개편 관심 집중 — 로보틱스 사업 가치 현실화 기대</div>          <div class="source-row">
+<span class="source">헤럴드경제</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFB5RUVTQTB4bzg2bHhGRHRycnN0VG9ZUVVZOV9fbWwzb1cwQ1RNUl9XWTZCeUdrUWJ1elZsU1NEbkJnalZPVllpNER4dnNWcDVfZFVtMGRB?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="events">
+      <div class="events-title">📅 Upcoming</div>
+      <ul>
+<li>5/26 BYD Sealion 06 DM-i 출시</li>      </ul>
+    </div>
+  </section>
+  <section id="티엘비" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">티엘비</div>
+      <div class="stock-ticker">356860</div>
+    </div>
+    <p class="stock-thesis">서버 DDR5·eSSD·SOCAMM·CXL 메모리 모듈 PCB. SK하이닉스·삼성 메모리 밸류체인 직접 수혜. AI 서버 고용량 메모리 수요 레버리지.</p>
+
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">삼전·하이닉스 등 5대 기업 수출 비중 44%…반도체 나홀로 질주에 임금도 ‘K양극화’ - 중앙일보</div>
+<div class="summary">삼성전자·SK하이닉스 등 5대 기업이 한국 수출의 44%를 차지하며 반도체 중심의 수출 쏠림 현상이 심화되고 있음 — 티엘비의 주요 고객사인 메모리 대장주들의 지배력 강화를 보여주는 지표.</div>          <div class="source-row">
+<span class="source">중앙일보</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE55UGhMYWtlWUZiY3FRd1RmR2xLeGZEc0JyR1FzRTBZcHhSeGV2UWFnRHg2YVJnRHFvZXZYRU52UkV0SkxmTzdOWkxHMklJNmlRVi1xZHRB?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">NVIDIA CFO Teases Rivals Caught Off Guard by Memory Shortage, Says Her Firm Knew Prices Would Soar - Wccftech</div>
+<div class="summary">엔비디아 CFO가 경쟁사들이 메모리 부족 사태에 당황한 반면 자사는 가격 급등을 예상했다고 밝힘 — AI 서버용 고용량 메모리 수요 타이트닝이 지속되고 있음을 시사.</div>          <div class="source-row">
+<span class="source">Wccftech</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPeXFjcm1RcVJ4dkFVT2xEbzhRZDJIRld1ZUU2aTVMX29SdWFoRGRBeGhpZExYeWFSMGR2TEFMT1lGNHVOUUE5SUlBYVhZTUtSeXY3LURpb25rb0FTZFFUR0Zwa1VoQXVpTzkyTnZKM25EWUp0bTJUOVoxbzlkXzh2TGlpTW43N2w1SHFzTzRGU0ZKUWI4SGhCdHVmdEl5dUFnWklPOVFDT1lCaXd6TlFYY0ZMRTZ4cXBURWww0gHAAUFVX3lxTE9sU0xtSnZKUF9Yc0xFNkp1TUQ1MUthWnlHa1JCS1dVTnpPdGVmZ0RPc3RBTXJON2JmSGNCNjFQakZ1Uk5FdklvNDdIVHBiVHJ0WFA0eUs1bWZSVWJtVFlhMnpxR3lqbzVWUXhLbW91VjZHcDhhMmMxcmt0VWN5ZGpHREYtd0FPemhfSWlIYk1JY1dNTjZkT2VlM25SNXV3SjlpV0RLZzhoVWFJUnFIWkdtZm5aNUFWUEt3X3F3V1FkeA?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📎</span> 기타·경쟁사</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">삼성전기, AI 수요 급증…MLCC·FCBGA '슈퍼사이클' 진입 신호 - 뉴스저널리즘</div>
+<div class="summary">삼성전기가 AI 수요 급증으로 MLCC·FCBGA 슈퍼사이클 진입 신호를 보이고 있음 — PCB 업계 전반의 AI 수요 확대 모멘텀 참고 사례.</div>          <div class="source-row">
+<span class="source">뉴스저널리즘</span>            <a class="link" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5DejNEakhZdmsxWHMyNW5mYngwM1VCMm9BRGktWDZKVm1uOUlRRlU4WU9wWFU0TG52V3I1VDZfV0thOFVvY0NkU3hkMGJZV0pPT3pHeWg4SnZDRHpXSTduLTBadmJ0cXRrZzFB?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+  <section id="tesla" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">Tesla</div>
+      <div class="stock-ticker">TSLA</div>
+    </div>
+    <p class="stock-thesis">FSD 전폭 승인 + 로보택시 상용화 + Optimus 양산 옵셔널리티</p>
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📰</span> 종목 뉴스</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">Did Tesla's SpaceX Stake And China FSD Rollout Just Reframe TSLA's AI And Autonomy Story? - Yahoo Finance</div>
+<div class="summary">Tesla의 SpaceX 지분 보유와 중국 FSD 출시가 TSLA의 AI·자율주행 투자 내러티브를 재구성할 수 있다는 분석 — 종목 테제의 FSD 승인 및 시너지 관점에서 의미 있음</div>          <div class="source-row">
+<span class="source">Yahoo Finance</span>            <a class="link" href="https://news.google.com/rss/articles/CBMimgFBVV95cUxQbXlvZFZONjNlQ3VoRGJNS0pQaDJjdGRPeE1RYUFGcl85eWRiMUhBYzdwOWxPMHBMVWFYM2FIakE0bzhmTDVCSEN1bjZHVEU1OU1xa3pISWxnSDhqTWhXWDlFaHJ1YjRpOFd6QURNSFNYVTNVUmpPQmtzNjd4aEVUbXA3Tjc2SkFfWEVKazNLZktSVEQ4bFVnUGNR?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Tesla now calls FSD ‘Tesla Assisted Driving’ in China – a more truthful name - Electrek</div>
+<div class="summary">Tesla가 중국에서 FSD를 'Tesla Assisted Driving'으로 명칭 변경 — 규제 대응 및 중국 FSD 전개 전략의 현실적 접근을 보여주는 신호</div>          <div class="source-row">
+<span class="source">Electrek</span>            <a class="link" href="https://news.google.com/rss/articles/CBMipwFBVV95cUxOU2gwZUFVNnR2NXBfclhmeGZPLVFNLTN2RE5vWnFTQW5vYXAwZGJLZ0dGa2pxNFpMdnF4alcxSUhTUnpOSFMyWUxhUXluTV96aTBNbnkyTmVkbEhiWkZWUjRmOHltMUx4UHFibmhmdi1xTGhCZmJKejNHTG0xYkFYVVVBX3dwclVRLVNNWjBsRS1Tajk0MW03VGxPc0xDX1pSbWMtT2RLZw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Tesla Robotaxi Problems in Texas: What Could It Mean for TSLA Stock? - The Motley Fool</div>
+<div class="summary">텍사스에서 Tesla 로보택시 문제 발생 — 로보택시 상용화 테제에 대한 리스크 요인</div>          <div class="source-row">
+<span class="source">The Motley Fool</span>            <a class="link" href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPQ2cwQVF1MGUtNFlRSlhCMklQT0ZIUmRYb253Wm1sMEFHQ1FydHJDbGpuNGZFZGNSeXJGeUM1cktaaWR6cjJBLVp3blE2YnBfb2Jia1FWdmNNNUtVMWFZaW1zVXM2ZWdweng5bnE1TEJsRFdKMlQ0UmE0bXBOUW44V3RMUG9wU05hUUVEanFuQkhFYmtteURNSA?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">Waymo Freeway Robotaxis Paused After Rider Says Trip Turned Terrifying - Autoblog</div>
+<div class="summary">Waymo가 고속도로 로보택시 서비스를 전국적으로 일시 중단 — 승객이 공포스러운 주행을 경험했다고 보고, 경쟁사의 안전 이슈는 Tesla FSD 상대적 입지에 영향 가능</div>          <div class="source-row">
+<span class="source">Autoblog</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiogFBVV95cUxOZDBudzIwME5SU1I2Z1pQaTZHcFRTZ3BiUjFEMHdtcXBCWkVjV1JtbDRxSFZUWGttRXVVUUJpN2tDN2lrcmVMcWx3VkFpdWc4NTRkd2N3SXl0cW1YM25UNFVxZzJzYkFySHdhXzdmTmxUQXJlNmpYR242RDFuSnVqb3VXNWZnZVZuQmM3cDV4eDk0LWpQdkp1cTRZeHN3bGM3WXc?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">Waymo Halts Highway Rides Nationwide - inc.com</div>
+<div class="summary">Waymo가 안전 업데이트를 위해 고속도로 로보택시 서비스 중단 — 로보택시 시장 선두주자의 운영 중단은 Tesla 로보택시 전망에 비교 관점 제공</div>          <div class="source-row">
+<span class="source">inc.com</span>            <a class="link" href="https://news.google.com/rss/articles/CBMihAFBVV95cUxNWTFMOVIwUnlEQnBlLV9BeVBOUkNkOVpVbnZia1lLSzZUQkZLb0pnVWE3MjFaMHdnZDBzMEhWVzk1VEN1bmIwZXA0REszQWoyTkZHYlYwQUtpaTU3VWZrb1VjY0FKOG1CWW1RQ0xwWHAxMUdzaWNGRi1FNmhuVGdCT0hiQmg?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">EXCLUSIVE: Nvidia CEO Jensen Huang Is Flying To Taiwan Nearly Every Month Asking For More GPUs – The Answer Remains Not Yet - Yahoo Finance</div>
+<div class="summary">Nvidia CEO 젠슨 황이 더 많은 GPU 확보를 위해 대만을 거의 매달 방문 중 — Tesla의 AI/FSD 컴퓨팅 인프라 공급망에 간접 영향 가능</div>          <div class="source-row">
+<span class="source">Yahoo Finance</span>            <a class="link" href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOWmJYbzNiSk1XTmt2TGlfWWlUMDlOOFprT3FoaWp1WGxvQ2xLUjZFQmlsNXMtOG1zaE5lQ1F3ZFROOUdiN1cybnBieUlJelhoTTRxa3JLVDVFdjl2Y05VMDdyQ1VORklYeFNvekZfU3BCRnNfaXZ6UlBvMWlsb0JnNmRtTGUyS1FZbmI5WWtpVDNzeVJPZWtCTl9aekNfSHJwZXRoXw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📎</span> 기타·경쟁사</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">The R2 Will Help Rivian Bridge the Gap With Tesla in Autonomous Driving Capabilities - autoevolution</div>
+<div class="summary">Rivian R2가 자율주행 역량에서 Tesla와의 격차를 줄일 것이라는 전망 — 경쟁사의 FSD 추격 동향</div>          <div class="source-row">
+<span class="source">autoevolution</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiywFBVV95cUxQb2g5X2JKOFJZZGh1QzVZbF9BTlVsY1VQQXZMNGdIdlpzTnh1TW90aVhiRTg0MWhsY3dob296STJVeEZNM0JaajFIRnlGWUE2eW9adFM4V1JtOGVISHlVR1p1a25za3hYUzc2TFlUTmkyZV9pa05EeWx3NVh2VHRkamlzQkpOTG14ejNZZ0tjNWZpOFIyeHZVdVZiZjBDV3otNWJ4RW95T2J0dGlROFhpQUtpQkJNOXVOcWxqUnMwMGhtbF9rMlkxNExYVQ?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+  <section id="현대오토에버" class="stock">
+    <div class="stock-header">
+      <div class="stock-name">현대오토에버</div>
+      <div class="stock-ticker">307950</div>
+    </div>
+    <p class="stock-thesis">현대차그룹 SDV(소프트웨어 정의 차량) 전환 + 엔터프라이즈 IT/클라우드 + 로보틱스. 그룹 SDV 양산 적용 속도가 SW 라이선스·유지보수 매출 레버리지.</p>
+
+
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">🔗</span> 밸류체인 동향</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">현대차그룹, HMG 퓨처콤플렉스 지분 확정…“AI 연구 조직 이동 가능성” - 빅데이터뉴스</div>
+<div class="summary">현대차그룹이 HMG 퓨처콤플렉스 지분을 확정했으며, AI 연구 조직 이동 가능성이 제기됨 — 그룹 소프트웨어/AI 역량 집중 재편과 관련해 오토에버의 역할 변화 가능성.</div>          <div class="source-row">
+<span class="source">빅데이터뉴스</span>            <a class="link" href="https://news.google.com/rss/articles/CBMifEFVX3lxTE5hMFI5UDNtcFljUVVCdWttU3NfYTNSSGV0RlNTT0ZIcC00b29xU2MyOS1ndVNtdDY1aWVnV2tpNEpmT2pMUHlfSk1EeTZCVGtpbmRvTEs2SkZtZkRnQllxdUM3ZWlMMmUtRVZuQVdNeHlOR2J3NXVDb3ZsMUs?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">'고수익' 중동서 판매량 28% '뚝'…발목 잡힌 현대차그룹, 돌파구는 - 머니투데이 - 머니투데이</div>
+<div class="summary">현대차그룹의 중동 판매량이 28% 급감하며 고수익 시장에서 악재 직면 — 그룹 전체 실적 압박은 IT 투자 속도에 영향 가능.</div>          <div class="source-row">
+<span class="source">머니투데이</span>            <a class="link" href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBwcHpVekV0TUtWbXV0NEVkYmU0b1JkWEgxTU12ZG84Und0LXBiYUc3X3ZRcnpZdkh6djQ3N003OUVMRmdlMzg1Z3dBWkpyd1pOdnlfdWprMU11czJlUXRhMlF3eXR6Ym9uQU1OatIBckFVX3lxTE4xVUlxZ2NMbEZDdFZVZUxKZnJHdllueFliMGtfRUdHSTlWT1FmYV95THcwaWRkNFlPcUJXcHVDV2o2ckZaZGVWRlBTaHpvbE5Pa1RQemJIS05xa0xxa2R1WXBEUlhfd0JZb0xxYm5UaDJaZw?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+        <li class="news-item">
+          <div class="title">보스턴다이나믹스 상장설 ‘솔솔’…현대차그룹 지배구조 개편에 쏠린 눈 [비즈360] - 헤럴드경제</div>
+<div class="summary">보스턴다이나믹스 상장설이 나오며 현대차그룹 지배구조 개편에 관심 집중 — 로보틱스 사업 분리 시 오토에버의 관련 사업 포지셔닝 변화 가능.</div>          <div class="source-row">
+<span class="source">헤럴드경제</span>            <a class="link" href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFB5RUVTQTB4bzg2bHhGRHRycnN0VG9ZUVVZOV9fbWwzb1cwQ1RNUl9XWTZCeUdrUWJ1elZsU1NEbkJnalZPVllpNER4dnNWcDVfZFVtMGRB?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="news-group">
+      <div class="news-group-title"><span class="icon">📎</span> 기타·경쟁사</div>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="title">인베스팅프로 적정가치 평가 후 삼성SDS, 57% 수익률 기록 - Investing.com 한국어</div>
+<div class="summary">경쟁사 삼성SDS가 인베스팅프로 적정가치 평가 후 57% 수익률 기록 — 동종업계 벤치마크 참고용.</div>          <div class="source-row">
+<span class="source">Investing.com 한국어</span>            <a class="link" href="https://news.google.com/rss/articles/CBMidkFVX3lxTE5YWi04aTR4RjBUb2w4UllSQ0I1anZBblJBZVctWWJWc25zLXEzZUZrVmQ4aGh2QVRQdEhoWWU2MEMxRHFpSlJHWklMNWpNeDFXNDRERWpnb3NsWTYxUnBBTnBtMmJrVUxTb25hTmtaUnF1dFNCaWc?oc=5" target="_blank" rel="noopener">원문 ↗</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <div>Generated 2026-05-24 22:17 KST · 다음 갱신 매일 07:00 KST</div>
+    <div>데이터: 구글시트 · Google News RSS · Claude API · <a href="https://github.com/joyglobal-ux/portfolio-daily-brief" target="_blank" rel="noopener">소스</a></div>
+  </footer>
+
+</div>
+</body>
+</html>
